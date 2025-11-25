@@ -712,3 +712,48 @@ footer {
 .icon-btn:hover {
     color: var(--accent-primary);
 }
+/* Company and Education Logos */
+.company-header, .edu-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.company-logo, .edu-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(2);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.timeline-item:hover .company-logo,
+.education-item:hover .edu-logo {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+}
+
+/* Company and Education Logos */
+.company-header, .edu-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.company-logo, .edu-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(2);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.timeline-item:hover .company-logo,
+.education-item:hover .edu-logo {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+}
