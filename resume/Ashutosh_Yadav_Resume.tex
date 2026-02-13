@@ -16,6 +16,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{tabularx}
+\usepackage{fontawesome5}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{xcolor}
@@ -84,12 +85,7 @@
 
 %---------- HEADER (IITG CCD FORMAT) ----------
 \begin{table}[ht]
-    \begin{tabularx}{\textwidth}{@{}c X r@{}}
-        % ---------- LEFT: IITG Logo ----------
-        % Uncomment the line below after placing iitg_logo.png in the same folder
-        % \raisebox{-0.5\height}{\includegraphics[width=1.4cm]{iitg_logo.png}}
-        \raisebox{-0.5\height}{\rule{1.4cm}{1.4cm}} % Placeholder — replace with logo
-        &
+    \begin{tabularx}{\textwidth}{@{}X r@{}}
         % ---------- CENTER: Student Details ----------
         \begin{tabular}[t]{@{}l@{}}
             {\large \textbf{\textit{Ashutosh Yadav}}} \\[2pt]
@@ -101,11 +97,9 @@
         &
         % ---------- RIGHT: Contact Info ----------
         \begin{tabular}[t]{r@{}}
-            +91 9628356778 \\[1pt]
-            +91 8726210198 \\[1pt]
-            \href{mailto:ashutosh.yadav@op.iitg.ac}{ashutosh.yadav@op.iitg.ac} \\[1pt]
-            \href{https://github.com/Ashutosh-yadav0001}{github.com/Ashutosh-yadav0001} \\[1pt]
-            \href{https://www.linkedin.com/in/ashutosh0001/}{linkedin.com/in/ashutosh0001}
+            \faPhone\ +91 9628356778 \\[2pt]
+            \faEnvelope\ \href{mailto:ashutosh.yadav@op.iitg.ac}{ashutosh.yadav@op.iitg.ac} \\[2pt]
+            \faGlobe\ \href{https://ashutosh-yadav0001.github.io/my_portfolio/}{Portfolio} ~$|$~ \faLinkedin\ \href{https://www.linkedin.com/in/ashutosh0001/}{LinkedIn}
         \end{tabular}
         \\
     \end{tabularx}
@@ -113,6 +107,12 @@
 \vspace{-16pt}
 \noindent\rule{\textwidth}{1.2pt}
 \vspace{-10pt}
+
+%---------- CAREER OBJECTIVE ----------
+\section{Career Objective}
+\vspace{2pt}
+\small{IT professional with 3+ years in endpoint management and cloud infrastructure, seeking to transition into software development and AI/ML engineering. Quick learner with strong Python, data science, and Azure foundations.}
+\vspace{-2pt}
 
 %---------- EDUCATION ----------
 \section{Education}
@@ -141,21 +141,12 @@
         {MECM Administrator}{Oct 2023 -- Present}
         {HCL Technologies Ltd.}{Lucknow, India}
     \resumeItemListStart
-        \resumeItem{Working on end-to-end application onboarding and functional testing across DEV, UAT, and Production environments, including preparation of DEV ring documentation.}
-        \resumeItem{Involved in SCCM patching process including SUG creation, downloading updates, and deploying to production.}
-        \resumeItem{Responsible for creation, testing, and implementation of various conditional access policies.}
-        \resumeItem{Creating and deploying remediation scripts for patch failed/error/unknown devices.}
-        \resumeItem{Client remediation and real-time troubleshooting from backend and client side.}
-        \resumeItem{Windows patch troubleshooting from backend and client side; creating SCCM client health check reports on daily basis.}
-        \resumeItem{Implemented Windows Autopilot for pre-provisioned deployment over production.}
-        \resumeItem{Application packaging using Win32 Content Prep tool.}
-        \resumeItem{Captured custom Windows 10 standalone image for next release of product deployment cycle.}
-        \resumeItem{Managing device compliance policies, app deployments, and configuration profiles via Microsoft Intune for endpoint management.}
-        \resumeItem{Enrolling and managing devices through Intune MDM/MAM, ensuring security baselines and conditional access enforcement.}
-        \resumeItem{Creating and deploying app protection policies, device configuration profiles, and Windows update rings through Intune.}
-        \resumeItem{Troubleshooting Intune enrollment failures, sync issues, and policy conflicts across Windows, iOS, and Android devices.}
-        \resumeItem{Administering Citrix Virtual Apps and Desktops environment, including session management and user access troubleshooting.}
-        \resumeItem{Monitoring Citrix infrastructure health and resolving connectivity, performance, and login issues for end users.}
+        \resumeItem{Managed end-to-end SCCM patching lifecycle — SUG creation, update downloads, and production deployments — while creating daily client health check reports and remediation scripts for patch failures.}
+        \resumeItem{Implemented Windows Autopilot for pre-provisioned deployment in production; captured custom Windows 10 images for product deployment cycles.}
+        \resumeItem{Managed device compliance policies, app deployments, and configuration profiles via Microsoft Intune (MDM/MAM), enforcing security baselines and conditional access across Windows, iOS, and Android.}
+        \resumeItem{Created and deployed app protection policies, device configuration profiles, and Windows update rings; troubleshot enrollment failures, sync issues, and policy conflicts.}
+        \resumeItem{Administered Citrix Virtual Apps and Desktops environment — session management, infrastructure monitoring, and resolving connectivity and performance issues.}
+        \resumeItem{Performed application onboarding and functional testing across DEV, UAT, and Production environments with Win32 packaging and DEV ring documentation.}
     \resumeItemListEnd
 
     \resumeSubheading
@@ -189,13 +180,23 @@
 \resumeSubHeadingListStart
 
     \resumeProjectHeading
-        {Plant Disease Classification Using Deep Learning}{\href{https://github.com/Ashutosh-yadav0001/potato-disease-project}{GitHub}}
+        {Plant Disease Classification Using Deep Learning}{\href{https://github.com/Ashutosh-yadav0001/Pototo-disease}{GitHub}}
     \resumeItemListStart
         \resumeItem{Built an end-to-end web application for detecting diseases in Potato and Tomato leaves using Convolutional Neural Networks (CNN) with TensorFlow/Keras.}
         \resumeItem{Trained CNN models on publicly available datasets achieving high classification accuracy across multiple disease categories.}
         \resumeItem{Developed a RESTful API backend using Python and FastAPI for model inference and image processing.}
         \resumeItem{Created a responsive React.js frontend with image upload, real-time prediction display, and prediction history features.}
         \resumeItem{\textbf{Tech Stack:} Python, TensorFlow/Keras, FastAPI, React.js, NumPy, Pillow}
+    \resumeItemListEnd
+
+    \resumeProjectHeading
+        {Sentinel-Sync: Edge-Cloud Collaborative Vision System}{}
+    \resumeItemListStart
+        \resumeItem{Designed a dual-tier AI architecture for industrial monitoring — edge-based YOLOv10-Nano for real-time object detection at 30+ FPS with selective cloud escalation via Gemini 1.5 Pro for visual reasoning.}
+        \resumeItem{Implemented a ``Selective Trigger'' mechanism reducing cloud bandwidth costs by \textasciitilde90\% by filtering frames locally based on confidence thresholds and restricted-zone dwell time (>2s).}
+        \resumeItem{Built an asynchronous MQTT/Protobuf communication pipeline achieving <500ms edge-to-cloud latency with FastAPI gateway and Redis caching for event logs.}
+        \resumeItem{Developed a Streamlit dashboard for real-time alert visualization and AI reasoning logs with end-to-end detection-to-alert workflow.}
+        \resumeItem{\textbf{Tech Stack:} Python, OpenCV, YOLOv10, TensorRT, MQTT, FastAPI, Redis, Gemini API, Docker, Streamlit}
     \resumeItemListEnd
 
 \resumeSubHeadingListEnd
