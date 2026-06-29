@@ -197,11 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Glitch Effect Trigger ---
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.classList.add('glitch');
-        heroTitle.setAttribute('data-text', heroTitle.textContent);
-    }
+    // Glitch effect removed for minimal design
+
 
     // --- Hamburger Menu Toggle ---
     const hamburger = document.getElementById('hamburger');
@@ -278,10 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedElement = document.getElementById('typed-text');
     if (typedElement) {
         new TypeWriter(typedElement, [
-            'MECM Administrator @ HCL Technologies',
-            'Aspiring AI Engineer & Developer',
-            'Data Science Student @ IIT Guwahati',
-            'Applying for Software Development Roles',
+            'Microsoft Intune & MECM Administrator',
+            'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',
+            'Aspiring Data Scientist & AI Engineer',
+            'Specializing in Deep Learning & Computer Vision',
         ], 70, 35, 2000);
     }
 
