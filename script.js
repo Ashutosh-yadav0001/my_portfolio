@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typedElement) {
         new TypeWriter(typedElement, [
             'Microsoft Intune & MECM Administrator',
+            'ServiceNow Developer',
             'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',
             'Aspiring Data Scientist & AI Engineer',
             'Specializing in Deep Learning & Computer Vision',
