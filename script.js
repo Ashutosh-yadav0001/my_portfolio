@@ -275,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedElement = document.getElementById('typed-text');
     if (typedElement) {
         new TypeWriter(typedElement, [
-            'Graduate Engineer | AI & Automation Candidate',
             '3 Years Enterprise Experience with Global Clients',
             'ServiceNow & Intune Device & User Automation Specialist',
             'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',

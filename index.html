@@ -128,13 +128,40 @@
             <div class="container">
                 <h2 class="section-title">Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project 1: Plant Disease Classification -->
+                    <!-- Project 0: BGV Agentic AI Hackathon -->
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-robot"></i></div>
+                        <h3>BGV Agentic AI System</h3>
+                        <p>Built at HCLTech OpenAI Agentic AI Hackathon. Automated the Background Verification (BGV) process for new-employee onboarding by integrating ServiceNow case management with GPT-4o mini for automated risk scoring and email drafting — cutting BGV processing time by 60%.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">ServiceNow</span>
+                            <span class="tech-tag">OpenAI GPT-4o mini</span>
+                            <span class="tech-tag">Microsoft 365</span>
+                            <span class="tech-tag">Power Automate</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 1: Explainable Pneumonia Detection -->
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-stethoscope"></i></div>
+                        <h3>PneumoFusionNet — Multimodal Pneumonia Detection</h3>
+                        <p>Multimodal deep learning pipeline fusing chest X-ray images (ResNet50 + DSC/GCSA, 1024-d) with clinical text (Bio_ClinicalBERT, 768-d) on MIMIC-CXR. Leak-proof evaluation pipeline achieving AUC 0.835, with multimodal fusion giving +3.7% AUC gain over single-modality baselines.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">ResNet50 + GCSA</span>
+                            <span class="tech-tag">Bio_ClinicalBERT</span>
+                            <span class="tech-tag">MIMIC-CXR</span>
+                            <span class="tech-tag">Multimodal Fusion</span>
+                        </div>
+                        <a href="https://github.com/Ashutosh-yadav0001" target="_blank"
+                            class="btn btn-secondary" data-hover>View on GitHub</a>
+                    </div>
+
+                    <!-- Project 2: Plant Disease Classification -->
                     <div class="project-card">
                         <div class="project-icon"><i class="fas fa-leaf"></i></div>
                         <h3>Plant Disease Classification</h3>
-                        <p>End-to-end web application for detecting diseases in Potato and Tomato leaves using CNN
-                            with TensorFlow/Keras. Features a FastAPI backend for model inference and a React.js
-                            frontend with real-time predictions and history.</p>
+                        <p>End-to-end image classification system for real-time plant disease detection using TensorFlow/Keras CNN. FastAPI backend for model inference and React.js frontend with real-time predictions.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">TensorFlow</span>
@@ -143,22 +170,6 @@
                             <span class="tech-tag">CNN</span>
                         </div>
                         <a href="https://github.com/Ashutosh-yadav0001/Pototo-disease" target="_blank"
-                            class="btn btn-secondary" data-hover>View on GitHub</a>
-                    </div>
-
-                    <!-- Project 2: Explainable Pneumonia Detection -->
-                    <div class="project-card">
-                        <div class="project-icon"><i class="fas fa-stethoscope"></i></div>
-                        <h3>Explainable Pneumonia Detection</h3>
-                        <p>Secured credentialed access to restricted MIMIC-CXR dataset via CITI training and PhysioNet DUA. Developed an end-to-end PyTorch pipeline for pneumonia classification on chest X-rays. Integrated DenseNet-121 backbone and customized ResNet50 with custom GCSA/CBAM attention modules. Achieved 76% tuned accuracy and 0.82 AUC on held-out test set with CLAHE and 10-view TTA.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">DenseNet-121</span>
-                            <span class="tech-tag">Attention (CBAM/GCSA)</span>
-                        </div>
-                        <a href="https://github.com/Ashutosh-yadav0001" target="_blank"
                             class="btn btn-secondary" data-hover>View on GitHub</a>
                     </div>
                 </div>
