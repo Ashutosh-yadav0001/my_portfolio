@@ -275,11 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedElement = document.getElementById('typed-text');
     if (typedElement) {
         new TypeWriter(typedElement, [
-            'Microsoft Intune & MECM Administrator',
-            'ServiceNow Developer',
+            'Graduate Engineer | AI & Automation Candidate',
+            '3 Years Enterprise Experience with Global Clients',
+            'ServiceNow & Intune Device & User Automation Specialist',
             'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',
-            'Aspiring Data Scientist & AI Engineer',
-            'Specializing in Deep Learning & Computer Vision',
+            'Specializing in Deep Learning & Smart Engineering Solutions',
         ], 70, 35, 2000);
     }
 
