@@ -20,6 +20,11 @@
     box-sizing: border-box;
 }
 
+strong, b {
+    display: inline;
+    font-weight: 600;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
@@ -1190,6 +1195,16 @@ body {
 }
 
 /* ===== IMPACT STATS ===== */
+/* ===== GLOBAL STRONG FIX ===== */
+/* Ensure strong tags never display as block inside card bullets */
+.exp-card strong,
+.exp-bullets strong,
+.exp-bullet-text strong {
+    display: inline !important;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 .stats-section {
     background: var(--card-bg);
     border-top: 1px solid var(--card-border);
