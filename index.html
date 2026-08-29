@@ -286,24 +286,78 @@
         <section id="research" class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Research Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2026 – Present</div>
-                        <div class="timeline-content">
-                            <h3>PneumoFusionNet — Multimodal Deep Learning for Pneumonia Detection</h3>
-                            <h4>IIT Guwahati &nbsp;|&nbsp; Supervisor: Prof. Ritika Jain</h4>
-                            <ul>
-                                <li>Built a multimodal deep learning pipeline fusing chest X-ray images (<strong>ResNet50 + DSC/GCSA</strong>, 1024-d) with clinical text (<strong>Bio_ClinicalBERT</strong>, 768-d) on the MIMIC-CXR dataset.</li>
-                                <li>Designed a leak-proof evaluation pipeline achieving an honest <strong>AUC of 0.835</strong>, with multimodal fusion giving a <strong>+3.7% leakage-free AUC gain</strong> over single-modality baselines.</li>
-                                <li>Secured credentialed MIMIC-CXR access via CITI research ethics training and PhysioNet DUA.</li>
-                            </ul>
-                            <div class="tech-stack" style="margin-top:14px;">
-                                <span class="tech-tag">PyTorch</span>
-                                <span class="tech-tag">ResNet50 + GCSA</span>
-                                <span class="tech-tag">Bio_ClinicalBERT</span>
-                                <span class="tech-tag">MIMIC-CXR</span>
-                                <span class="tech-tag">Multimodal Fusion</span>
+
+                <div class="exp-card">
+                    <!-- Top bar -->
+                    <div class="exp-top">
+                        <div class="exp-company">
+                            <div class="exp-logo-wrap" style="background:#fff;">
+                                <img src="iitg_logo.png" alt="IIT Guwahati" style="width:100%;height:100%;object-fit:contain;">
                             </div>
+                            <div>
+                                <h3 class="exp-role">PneumoFusionNet</h3>
+                                <p class="exp-company-name">Multimodal Deep Learning for Pneumonia Detection</p>
+                                <p class="exp-company-name" style="margin-top:3px;">
+                                    <i class="fas fa-university" style="color:var(--accent-primary);font-size:0.75rem;"></i>
+                                    IIT Guwahati &nbsp;·&nbsp;
+                                    <i class="fas fa-user-tie" style="color:var(--accent-primary);font-size:0.75rem;"></i>
+                                    Supervisor: Prof. Ritika Jain
+                                </p>
+                            </div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-date-chip"><i class="fas fa-calendar-alt"></i> 2026 – Present</span>
+                            <span class="exp-status-chip" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">
+                                <span style="width:7px;height:7px;border-radius:50%;background:#fbbf24;display:inline-block;animation:pulse-dot 2s infinite;"></span>
+                                Ongoing Research
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Tech stack row -->
+                    <div class="exp-tools">
+                        <span class="exp-tool"><i class="fas fa-brain"></i> PyTorch</span>
+                        <span class="exp-tool"><i class="fas fa-network-wired"></i> ResNet50 + GCSA</span>
+                        <span class="exp-tool"><i class="fas fa-comment-medical"></i> Bio_ClinicalBERT</span>
+                        <span class="exp-tool"><i class="fas fa-database"></i> MIMIC-CXR</span>
+                        <span class="exp-tool"><i class="fas fa-code-branch"></i> Multimodal Fusion</span>
+                    </div>
+
+                    <div class="exp-divider"></div>
+
+                    <!-- Bullet points -->
+                    <ul class="exp-bullets">
+                        <li>
+                            <span class="exp-bullet-icon"><i class="fas fa-check"></i></span>
+                            Built a multimodal deep learning pipeline fusing chest X-ray images (<strong>ResNet50 + DSC/GCSA</strong>, 1024-d) with clinical text (<strong>Bio_ClinicalBERT</strong>, 768-d) on the MIMIC-CXR dataset.
+                        </li>
+                        <li>
+                            <span class="exp-bullet-icon"><i class="fas fa-check"></i></span>
+                            Designed a leak-proof evaluation pipeline (patient-level GroupShuffleSplit, IMPRESSION-section stripping) achieving an honest <strong>AUC of 0.835</strong>, with multimodal fusion giving a <strong>+3.7% leakage-free AUC gain</strong> over single-modality baselines.
+                        </li>
+                        <li>
+                            <span class="exp-bullet-icon"><i class="fas fa-check"></i></span>
+                            Secured credentialed MIMIC-CXR access via <strong>CITI research ethics training</strong> and PhysioNet Data Use Agreement (DUA).
+                        </li>
+                    </ul>
+
+                    <!-- Key results row -->
+                    <div class="exp-impact-row">
+                        <div class="exp-impact-item">
+                            <span class="exp-impact-num">0.835</span>
+                            <span class="exp-impact-label">AUC Score</span>
+                        </div>
+                        <div class="exp-impact-item">
+                            <span class="exp-impact-num">+3.7%</span>
+                            <span class="exp-impact-label">Fusion AUC Gain</span>
+                        </div>
+                        <div class="exp-impact-item">
+                            <span class="exp-impact-num">2</span>
+                            <span class="exp-impact-label">Modalities Fused</span>
+                        </div>
+                        <div class="exp-impact-item">
+                            <span class="exp-impact-num">CITI</span>
+                            <span class="exp-impact-label">Ethics Certified</span>
                         </div>
                     </div>
                 </div>
