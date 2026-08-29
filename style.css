@@ -1,16 +1,16 @@
 /* Global Styles */
 :root {
-    --bg-color: #f8f9fa;
-    --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --text-primary: #1a202c;
-    --text-secondary: #4a5568;
-    --accent-primary: #2b6cb0;       /* professional navy blue */
-    --accent-secondary: #3182ce;
-    --accent-gradient: linear-gradient(135deg, #2b6cb0, #3182ce);
-    --accent-glow: rgba(43, 108, 176, 0.15);
+    --bg-color: #111111;
+    --card-bg: #1a1a1a;
+    --card-border: #2a2a2a;
+    --text-primary: #ededed;
+    --text-secondary: #888888;
+    --accent-primary: #0070f3;       /* clean single blue — no gradients */
+    --accent-secondary: #0070f3;
+    --accent-gradient: #0070f3;      /* intentionally flat */
+    --accent-glow: transparent;      /* no glow */
     --font-main: 'Inter', sans-serif;
-    --transition-speed: 0.3s;
+    --transition-speed: 0.25s;
     --glass-blur: 10px;
 }
 
@@ -75,14 +75,14 @@ ul {
 
 .btn-primary {
     background: var(--accent-primary);
-    color: var(--bg-color);
+    color: #ffffff;
     border: 1px solid var(--accent-primary);
 }
 
 .btn-primary:hover {
-    background: transparent;
-    color: var(--accent-primary);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    background: #0060d3;
+    color: #ffffff;
+    box-shadow: none;
     transform: translateY(-2px);
 }
 
@@ -126,9 +126,7 @@ header {
     color: var(--text-primary);
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-primary);
 }
 
 .nav-links {
@@ -219,7 +217,7 @@ header {
     letter-spacing: 1px;
     text-transform: uppercase;
     background: none;
-    -webkit-text-fill-color: var(--text-secondary);
+    color: var(--text-secondary);
     color: var(--text-secondary);
     font-family: var(--font-main);
 }
@@ -533,8 +531,7 @@ header {
 }
 
 .education-item:hover {
-    border-image: var(--accent-gradient);
-    border-image-slice: 1;
+    border-color: var(--accent-primary);
 }
 
 .education-item h3 {
@@ -584,11 +581,9 @@ header {
 .cert-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--accent-gradient);
+    background: var(--accent-primary);
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -739,7 +734,6 @@ header {
 .social-links a:hover {
     color: var(--accent-primary);
     transform: translateY(-3px);
-    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 /* Footer */
@@ -863,7 +857,7 @@ footer {
     position: fixed;
     width: 8px;
     height: 8px;
-    background: var(--accent-gradient);
+    background: var(--accent-primary);
     border-radius: 50%;
     z-index: 9999;
     pointer-events: none;
@@ -977,31 +971,12 @@ footer {
     }
 }
 
-/* --- Profile Ring Glow --- */
+/* --- Profile Ring --- */
 .profile-ring {
     position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
     border-radius: 50%;
-    border: 2px solid transparent;
-    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.5), transparent, rgba(255, 255, 255, 0.3), transparent) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: rotateRing 4s linear infinite;
-}
-
-@keyframes rotateRing {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+    border: 1px solid var(--card-border);
 }
 
 /* --- Typing Cursor --- */
@@ -1023,33 +998,11 @@ footer {
     }
 }
 
-/* --- Glowing CTA Button --- */
+/* --- CTA Button --- */
 .btn-glow {
     position: relative;
     overflow: hidden;
 }
-
-.btn-glow::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    border-radius: 6px;
-    z-index: -1;
-    animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    50% {
-        transform: translateX(100%);
-    }
 
     100% {
         transform: translateX(-100%);
