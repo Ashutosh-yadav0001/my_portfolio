@@ -250,12 +250,12 @@ header {
 
 /* Sections General */
 .section {
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 60px;
+    font-size: 1.8rem;
+    margin-bottom: 36px;
     text-align: center;
     color: var(--text-primary);
     text-transform: uppercase;
@@ -1475,6 +1475,8 @@ body {
     margin-top: 3px;
 }
 .exp-bullet-icon i { font-size: 0.6rem; color: var(--accent-primary); }
+.exp-bullet-text { flex: 1; min-width: 0; }
+.exp-bullet-text strong { color: var(--text-primary); }
 .exp-bullets li strong { color: var(--text-primary); }
 
 .exp-impact-row {
