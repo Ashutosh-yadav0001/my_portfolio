@@ -30,6 +30,7 @@
                 <li><a href="#about" data-hover>About</a></li>
                 <li><a href="#skills" data-hover>Skills</a></li>
                 <li><a href="#projects" data-hover>Projects</a></li>
+                <li><a href="#research" data-hover>Research</a></li>
                 <li><a href="#experience" data-hover>Experience</a></li>
                 <li><a href="#education" data-hover>Education</a></li>
                 <li><a href="#certifications" data-hover>Certs</a></li>
@@ -124,11 +125,40 @@
             </div>
         </section>
 
+        <!-- RESEARCH EXPERIENCE -->
+        <section id="research" class="section">
+            <div class="container">
+                <h2 class="section-title">Research Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026 – Present</div>
+                        <div class="timeline-content">
+                            <h3>PneumoFusionNet — Multimodal Deep Learning for Pneumonia Detection</h3>
+                            <h4>IIT Guwahati &nbsp;|&nbsp; Supervisor: Prof. Ritika Jain</h4>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 10px;">
+                                <li>Built a multimodal deep learning pipeline fusing chest X-ray images (<strong>ResNet50 + DSC/GCSA</strong>, 1024-d) with clinical text (<strong>Bio_ClinicalBERT</strong>, 768-d) on the MIMIC-CXR dataset.</li>
+                                <li>Designed a leak-proof evaluation pipeline (patient-level GroupShuffleSplit, IMPRESSION-section stripping), achieving an honest <strong>AUC of 0.835</strong> with multimodal fusion giving a <strong>+3.7% leakage-free AUC gain</strong> over single-modality baselines.</li>
+                                <li>Secured credentialed MIMIC-CXR access via CITI research ethics training and PhysioNet DUA.</li>
+                            </ul>
+                            <div class="tech-stack" style="margin-top:12px;">
+                                <span class="tech-tag">PyTorch</span>
+                                <span class="tech-tag">ResNet50 + GCSA</span>
+                                <span class="tech-tag">Bio_ClinicalBERT</span>
+                                <span class="tech-tag">MIMIC-CXR</span>
+                                <span class="tech-tag">Multimodal Fusion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
         <section id="projects" class="section">
             <div class="container">
                 <h2 class="section-title">Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project 0: BGV Agentic AI Hackathon -->
+                    <!-- BGV Agentic AI -->
                     <div class="project-card">
                         <div class="project-icon"><i class="fas fa-robot"></i></div>
                         <h3>BGV Agentic AI System</h3>
@@ -141,23 +171,7 @@
                         </div>
                     </div>
 
-                    <!-- Project 1: Explainable Pneumonia Detection -->
-                    <div class="project-card">
-                        <div class="project-icon"><i class="fas fa-stethoscope"></i></div>
-                        <h3>PneumoFusionNet — Multimodal Pneumonia Detection</h3>
-                        <p>Multimodal deep learning pipeline fusing chest X-ray images (ResNet50 + DSC/GCSA, 1024-d) with clinical text (Bio_ClinicalBERT, 768-d) on MIMIC-CXR. Leak-proof evaluation pipeline achieving AUC 0.835, with multimodal fusion giving +3.7% AUC gain over single-modality baselines.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">ResNet50 + GCSA</span>
-                            <span class="tech-tag">Bio_ClinicalBERT</span>
-                            <span class="tech-tag">MIMIC-CXR</span>
-                            <span class="tech-tag">Multimodal Fusion</span>
-                        </div>
-                        <a href="https://github.com/Ashutosh-yadav0001" target="_blank"
-                            class="btn btn-secondary" data-hover>View on GitHub</a>
-                    </div>
-
-                    <!-- Project 2: Plant Disease Classification -->
+                    <!-- Plant Disease -->
                     <div class="project-card">
                         <div class="project-icon"><i class="fas fa-leaf"></i></div>
                         <h3>Plant Disease Classification</h3>

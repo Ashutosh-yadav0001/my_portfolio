@@ -1,14 +1,14 @@
 /* Global Styles */
 :root {
-    --bg-color: #121212;
-    --card-bg: rgba(255, 255, 255, 0.04);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-primary: #e0e0e0;
-    --text-secondary: #a0a0a0;
-    --accent-primary: #4fd1c5; /* soft teal */
-    --accent-secondary: #4fd1c5;
-    --accent-gradient: linear-gradient(135deg, #4fd1c5, #81e6d9);
-    --accent-glow: rgba(79, 209, 197, 0.2);
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --accent-primary: #2b6cb0;       /* professional navy blue */
+    --accent-secondary: #3182ce;
+    --accent-gradient: linear-gradient(135deg, #2b6cb0, #3182ce);
+    --accent-glow: rgba(43, 108, 176, 0.15);
     --font-main: 'Inter', sans-serif;
     --transition-speed: 0.3s;
     --glass-blur: 10px;
@@ -27,8 +27,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     font-size: 1rem;
-    background-image:
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
 }
 
 a {
