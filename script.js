@@ -1,279 +1,333 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // =============================================
-    // TYPEWRITER
-    // =============================================
-    class TypeWriter {
-        constructor(el, phrases, typeSpeed = 70, deleteSpeed = 35, pauseTime = 2000) {
-            this.el = el;
-            this.phrases = phrases;
-            this.typeSpeed = typeSpeed;
-            this.deleteSpeed = deleteSpeed;
-            this.pauseTime = pauseTime;
-            this.phraseIndex = 0;
-            this.charIndex = 0;
-            this.isDeleting = false;
-            this.tick();
+    // --- Sound Manager (Web Audio API) ---
+    class SoundManager {
+        constructor() {
+            this.context = new (window.AudioContext || window.webkitAudioContext)();
+            this.isMuted = false;
+            this.toggleBtn = document.getElementById('sound-toggle');
+            this.initListeners();
         }
-        tick() {
-            const current = this.phrases[this.phraseIndex];
-            if (this.isDeleting) {
-                this.el.textContent = current.slice(0, --this.charIndex);
-            } else {
-                this.el.textContent = current.slice(0, ++this.charIndex);
-            }
-            let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
-            if (!this.isDeleting && this.charIndex === current.length) {
-                delay = this.pauseTime;
-                this.isDeleting = true;
-            } else if (this.isDeleting && this.charIndex === 0) {
-                this.isDeleting = false;
-                this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-                delay = 400;
-            }
-            setTimeout(() => this.tick(), delay);
+
+        initListeners() {
+            this.toggleBtn.addEventListener('click', () => {
+                this.isMuted = !this.isMuted;
+                const icon = this.toggleBtn.querySelector('i');
+                if (this.isMuted) {
+                    icon.classList.remove('fa-volume-up');
+                    icon.classList.add('fa-volume-mute');
+                } else {
+                    icon.classList.remove('fa-volume-mute');
+                    icon.classList.add('fa-volume-up');
+                }
+                if (this.context.state === 'suspended') {
+                    this.context.resume();
+                }
+            });
+
+            document.querySelectorAll('[data-hover]').forEach(el => {
+                el.addEventListener('mouseenter', () => this.playHoverSound());
+                el.addEventListener('click', () => this.playClickSound());
+            });
+        }
+
+        playHoverSound() {
+            if (this.isMuted) return;
+            if (this.context.state === 'suspended') this.context.resume();
+
+            const osc = this.context.createOscillator();
+            const gain = this.context.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, this.context.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(600, this.context.currentTime + 0.1);
+
+            gain.gain.setValueAtTime(0.05, this.context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 0.1);
+
+            osc.connect(gain);
+            gain.connect(this.context.destination);
+
+            osc.start();
+            osc.stop(this.context.currentTime + 0.1);
+        }
+
+        playClickSound() {
+            if (this.isMuted) return;
+            if (this.context.state === 'suspended') this.context.resume();
+
+            const osc = this.context.createOscillator();
+            const gain = this.context.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(300, this.context.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, this.context.currentTime + 0.15);
+
+            gain.gain.setValueAtTime(0.1, this.context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 0.15);
+
+            osc.connect(gain);
+            gain.connect(this.context.destination);
+
+            osc.start();
+            osc.stop(this.context.currentTime + 0.15);
         }
     }
 
-    const typedEl = document.getElementById('typed-text');
-    if (typedEl) {
-        new TypeWriter(typedEl, [
-            '3 Years Enterprise Automation Experience',
-            'ServiceNow & Intune Specialist',
-            'B.Sc. DS & AI — IIT Guwahati',
-            'Deep Learning & AI/ML Developer',
-            'PowerShell & Workflow Automation',
-        ], 70, 35, 2000);
+    // --- Premium Cursor-Reactive Background ---
+    class CursorBackground {
+        constructor() {
+            this.canvas = document.getElementById('particles-canvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            this.smoothMouse = { x: this.mouse.x, y: this.mouse.y };
+            this.dots = [];
+            this.resize();
+            this.initDots();
+            this.animate();
+
+            window.addEventListener('resize', () => {
+                this.resize();
+                this.initDots();
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            });
+        }
+
+        resize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
+        initDots() {
+            this.dots = [];
+            const count = Math.floor((this.canvas.width * this.canvas.height) / 25000);
+            for (let i = 0; i < count; i++) {
+                this.dots.push({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    baseSize: Math.random() * 1.5 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.3 + 0.1
+                });
+            }
+        }
+
+        animate() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // Smooth mouse follow
+            this.smoothMouse.x += (this.mouse.x - this.smoothMouse.x) * 0.08;
+            this.smoothMouse.y += (this.mouse.y - this.smoothMouse.y) * 0.08;
+
+            // Draw cursor glow
+            const gradient = this.ctx.createRadialGradient(
+                this.smoothMouse.x, this.smoothMouse.y, 0,
+                this.smoothMouse.x, this.smoothMouse.y, 350
+            );
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.04)');
+            gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.015)');
+            gradient.addColorStop(1, 'transparent');
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // Update and draw dots
+            this.dots.forEach(dot => {
+                dot.x += dot.speedX;
+                dot.y += dot.speedY;
+
+                if (dot.x > this.canvas.width) dot.x = 0;
+                if (dot.x < 0) dot.x = this.canvas.width;
+                if (dot.y > this.canvas.height) dot.y = 0;
+                if (dot.y < 0) dot.y = this.canvas.height;
+
+                // React to cursor proximity
+                const dx = this.smoothMouse.x - dot.x;
+                const dy = this.smoothMouse.y - dot.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const maxDist = 200;
+
+                let size = dot.baseSize;
+                let alpha = dot.opacity;
+
+                if (dist < maxDist) {
+                    const factor = 1 - dist / maxDist;
+                    size += factor * 2;
+                    alpha += factor * 0.4;
+                }
+
+                this.ctx.beginPath();
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                this.ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
+                this.ctx.fill();
+            });
+
+            requestAnimationFrame(this.animate.bind(this));
+        }
     }
 
-    // =============================================
-    // SCROLL REVEAL
-    // =============================================
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                const delay = e.target.style.getPropertyValue('--delay') || '0s';
-                setTimeout(() => e.target.classList.add('visible'),
-                    parseFloat(delay) * 1000);
-                revealObserver.unobserve(e.target);
+    // --- Custom Cursor ---
+    const cursor = document.querySelector('.cursor');
+    const character = document.querySelector('.character-cursor');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+
+        setTimeout(() => {
+            if (character) {
+                character.style.left = e.clientX + 'px';
+                character.style.top = e.clientY + 'px';
             }
-        });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.anim-reveal').forEach(el => revealObserver.observe(el));
-
-    // =============================================
-    // HEADER SHRINK ON SCROLL
-    // =============================================
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 60);
+        }, 80);
     });
 
-    // =============================================
-    // ANIMATED STATS COUNTER
-    // =============================================
-    function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        const suffix = el.dataset.suffix || '';
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function update(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-            const value = Math.floor(eased * target);
-            if (target >= 1000) {
-                el.textContent = value.toLocaleString() + suffix;
-            } else {
-                el.textContent = value + suffix;
-            }
-            if (progress < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
-                statsObserver.unobserve(e.target);
-            }
+    document.querySelectorAll('[data-hover]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+            if (character) character.classList.add('active');
         });
-    }, { threshold: 0.3 });
-
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection) statsObserver.observe(statsSection);
-
-    // =============================================
-    // TERMINAL TYPING ANIMATION
-    // =============================================
-    const terminalLines = document.getElementById('terminalLines');
-    const termCursor = document.getElementById('termCursor');
-
-    const script = [
-        { type: 'prompt', text: 'PS C:\\Automation> ' },
-        { type: 'cmd', text: 'Get-IntuneManagedDevice | Where-Object {$_.complianceState -eq "noncompliant"}', pause: 80 },
-        { type: 'newline' },
-        { type: 'output', text: 'Connecting to Microsoft Graph API...', delay: 300 },
-        { type: 'success', text: '[✓] Authenticated — Tenant: global-client.onmicrosoft.com', delay: 200 },
-        { type: 'warn',    text: '[!] Found 47 non-compliant devices', delay: 150 },
-        { type: 'newline' },
-        { type: 'prompt', text: 'PS C:\\Automation> ' },
-        { type: 'cmd', text: 'Invoke-IntuneDeviceAction -Action Sync -DeviceIds $devices', pause: 80 },
-        { type: 'newline' },
-        { type: 'success', text: '[✓] Sync triggered on 47 devices', delay: 200 },
-        { type: 'success', text: '[✓] Compliance policies re-applied', delay: 150 },
-        { type: 'output', text: '    Processing...  3.2s', delay: 400 },
-        { type: 'success', text: '[✓] 47/47 devices synced & compliant', delay: 200 },
-        { type: 'newline' },
-        { type: 'prompt', text: 'PS C:\\Automation> ' },
-        { type: 'cmd', text: 'Close-ServiceNowTicket -IncidentId "INC0098234" -Resolution "Auto-remediated"', pause: 70 },
-        { type: 'newline' },
-        { type: 'success', text: '[✓] INC0098234 resolved — SLA met (3.2h / 4h target)', delay: 200 },
-        { type: 'blue',    text: '    Total manual effort saved: 0 minutes (fully automated)', delay: 150 },
-        { type: 'newline' },
-        { type: 'prompt', text: 'PS C:\\Automation> ' },
-    ];
-
-    let lineIndex = 0;
-
-    function renderLine(item, charIndex = 0) {
-        return new Promise(resolve => {
-            if (item.type === 'newline') {
-                terminalLines.innerHTML += '<br>';
-                return resolve();
-            }
-
-            const colorMap = {
-                prompt: 't-prompt', cmd: 't-cmd', output: 't-output',
-                success: 't-success', warn: 't-warn', blue: 't-blue'
-            };
-            const cls = colorMap[item.type] || 't-output';
-
-            if (item.type === 'cmd') {
-                // Type character by character
-                const span = document.createElement('span');
-                span.className = cls;
-                terminalLines.appendChild(span);
-
-                let i = 0;
-                function typeChar() {
-                    if (i < item.text.length) {
-                        span.textContent += item.text[i++];
-                        setTimeout(typeChar, item.pause || 60);
-                    } else {
-                        terminalLines.innerHTML += '<br>';
-                        resolve();
-                    }
-                }
-                typeChar();
-            } else {
-                // Appear with delay
-                setTimeout(() => {
-                    terminalLines.innerHTML += `<span class="${cls}">${item.text}</span><br>`;
-                    resolve();
-                }, item.delay || 100);
-            }
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+            if (character) character.classList.remove('active');
         });
-    }
+    });
 
-    async function runTerminal() {
-        for (const item of script) {
-            await renderLine(item);
-            // Auto-scroll terminal
-            const body = document.getElementById('terminalBody');
-            if (body) body.scrollTop = body.scrollHeight;
-        }
-        // Loop after pause
-        setTimeout(() => {
-            terminalLines.innerHTML = '';
-            runTerminal();
-        }, 4000);
-    }
+    // --- Glitch Effect Trigger ---
+    // Glitch effect removed for minimal design
 
-    // Start terminal when section is visible
-    const terminalSection = document.querySelector('.terminal-section');
-    if (terminalSection) {
-        const termObs = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                runTerminal();
-                termObs.disconnect();
-            }
-        }, { threshold: 0.3 });
-        termObs.observe(terminalSection);
-    }
 
-    // =============================================
-    // HAMBURGER
-    // =============================================
+    // --- Hamburger Menu Toggle ---
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-    if (hamburger) {
+
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            navLinks.classList.toggle('active');
             const icon = hamburger.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');
+
+        // Close menu when clicking a nav link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             });
         });
     }
 
-    // =============================================
-    // CONTACT FORM
-    // =============================================
-    const form = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-            setTimeout(() => {
-                form.reset();
-                btn.textContent = 'Send Message';
-                btn.disabled = false;
-                formSuccess.style.display = 'flex';
-                setTimeout(() => formSuccess.style.display = 'none', 4000);
-            }, 1200);
-        });
+    // --- Initialize ---
+    new SoundManager();
+    new CursorBackground();
+
+    // --- Typing Effect ---
+    class TypeWriter {
+        constructor(element, phrases, typingSpeed = 80, deletingSpeed = 40, pauseTime = 2000) {
+            this.element = element;
+            this.phrases = phrases;
+            this.typingSpeed = typingSpeed;
+            this.deletingSpeed = deletingSpeed;
+            this.pauseTime = pauseTime;
+            this.phraseIndex = 0;
+            this.charIndex = 0;
+            this.isDeleting = false;
+            this.type();
+        }
+
+        type() {
+            const currentPhrase = this.phrases[this.phraseIndex];
+
+            if (this.isDeleting) {
+                this.charIndex--;
+                this.element.textContent = currentPhrase.substring(0, this.charIndex);
+            } else {
+                this.charIndex++;
+                this.element.textContent = currentPhrase.substring(0, this.charIndex);
+            }
+
+            let speed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
+
+            if (!this.isDeleting && this.charIndex === currentPhrase.length) {
+                speed = this.pauseTime;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.charIndex === 0) {
+                this.isDeleting = false;
+                this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+                speed = 400;
+            }
+
+            setTimeout(() => this.type(), speed);
+        }
     }
 
-    // =============================================
-    // YEAR
-    // =============================================
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const typedElement = document.getElementById('typed-text');
+    if (typedElement) {
+        new TypeWriter(typedElement, [
+            '3 Years Enterprise Experience with Global Clients',
+            'ServiceNow & Intune Device & User Automation Specialist',
+            'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',
+            'Specializing in Deep Learning & Smart Engineering Solutions',
+        ], 70, 35, 2000);
+    }
 
-    // =============================================
-    // SMOOTH SCROLL
-    // =============================================
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
+    // --- Year, Smooth Scroll, Form ---
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
-    // =============================================
-    // SOUND TOGGLE (keep muted by default)
-    // =============================================
-    const soundBtn = document.getElementById('sound-toggle');
-    if (soundBtn) {
-        soundBtn.addEventListener('click', () => {
-            const icon = soundBtn.querySelector('i');
-            icon.classList.toggle('fa-volume-mute');
-            icon.classList.toggle('fa-volume-up');
+    // Contact form with animated success message
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Show success message
+            if (formSuccess) {
+                formSuccess.classList.add('show');
+
+                // Hide after 4 seconds
+                setTimeout(() => {
+                    formSuccess.classList.remove('show');
+                }, 4000);
+            }
+
+            contactForm.reset();
         });
     }
 
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
+    });
 });
