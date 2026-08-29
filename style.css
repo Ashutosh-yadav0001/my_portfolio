@@ -1462,7 +1462,10 @@ body {
     margin-bottom: 28px;
 }
 .exp-bullets li {
-    display: flex; gap: 12px; align-items: flex-start;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 10px;
+    align-items: start;
     color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;
 }
 .exp-bullet-icon {
@@ -1475,9 +1478,13 @@ body {
     margin-top: 3px;
 }
 .exp-bullet-icon i { font-size: 0.6rem; color: var(--accent-primary); }
-.exp-bullet-text { flex: 1; min-width: 0; }
-.exp-bullet-text strong { color: var(--text-primary); }
-.exp-bullets li strong { color: var(--text-primary); }
+.exp-bullet-text { display: block; }
+.exp-bullet-text strong,
+.exp-bullets li strong { 
+    display: inline !important; 
+    color: var(--text-primary); 
+    font-weight: 600;
+}
 
 .exp-impact-row {
     display: grid;
