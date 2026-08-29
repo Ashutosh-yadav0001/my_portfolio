@@ -4,129 +4,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashutosh Yadav | Data Science & AI Student</title>
+    <title>Ashutosh Yadav | Automation Engineer & AI/ML</title>
     <meta name="description"
-        content="Portfolio of Ashutosh Yadav — MECM Administrator at HCL Technologies, Data Science & AI student at IIT Guwahati, and Microsoft Certified Professional.">
-    <link rel="stylesheet" href="style.css">
+        content="Final-year IIT Guwahati Data Science & AI student with 3 years enterprise automation experience using Microsoft Intune, ServiceNow, and PowerShell.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <div class="cursor"></div>
-    <img src="character.png" class="character-cursor" alt="AI Companion">
-
-    <header>
+    <header id="header">
         <nav class="navbar">
-            <div class="logo" data-hover>Ashutosh Yadav</div>
+            <div class="logo">Ashutosh Yadav</div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" data-hover>About</a></li>
-                <li><a href="#skills" data-hover>Skills</a></li>
-                <li><a href="#projects" data-hover>Projects</a></li>
-                <li><a href="#research" data-hover>Research</a></li>
-                <li><a href="#experience" data-hover>Experience</a></li>
-                <li><a href="#education" data-hover>Education</a></li>
-                <li><a href="#certifications" data-hover>Certs</a></li>
-                <li><a href="#contact" data-hover>Contact</a></li>
-                <li><button id="sound-toggle" class="icon-btn" aria-label="Toggle Sound" data-hover><i
-                            class="fas fa-volume-up"></i></button></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#automation">Automation</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certs</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="sound-toggle" class="icon-btn" aria-label="Toggle Sound"><i class="fas fa-volume-mute"></i></button></li>
             </ul>
-            <div class="hamburger" id="hamburger" data-hover>
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
+        <!-- ===== HERO ===== -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="profile-img-container anim-float">
+                    <img src="profile.jpg" alt="Ashutosh Yadav" class="profile-img">
+                    <div class="profile-ring"></div>
+                </div>
+                <h1 class="hero-title anim-reveal" style="--delay:0.2s">Ashutosh Yadav</h1>
+                <h2 class="hero-subtitle anim-reveal" style="--delay:0.4s">
+                    <span id="typed-text"></span><span class="typing-cursor">|</span>
+                </h2>
+                <p class="hero-tagline anim-reveal" style="--delay:0.6s">
+                    Bridging Enterprise IT &amp; AI: 3 Years Automating Global Ops (Intune/ServiceNow) + Applied AI/ML (IIT Guwahati)
+                </p>
+                <div class="hero-buttons anim-reveal" style="--delay:0.8s">
+                    <a href="#projects" class="btn btn-primary btn-glow">View My Work</a>
+                    <a href="resume/IIT_Guwahati_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== IMPACT STATS ===== -->
+        <section class="stats-section">
             <div class="container">
-                <div class="hero-content">
-                    <div class="profile-img-container anim-float">
-                        <img src="profile.jpg" alt="Ashutosh Yadav" class="profile-img">
-                        <div class="profile-ring"></div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-desktop"></i></div>
+                        <div class="stat-number" data-target="10000" data-suffix="+">—</div>
+                        <div class="stat-label">Devices Managed</div>
                     </div>
-                    <h1 class="hero-title anim-reveal" style="--delay: 0.3s">Ashutosh Yadav</h1>
-                    <h2 class="hero-subtitle anim-reveal" style="--delay: 0.6s">
-                        <span id="typed-text"></span><span class="typing-cursor">|</span>
-                    </h2>
-                    <p class="hero-tagline anim-reveal" style="--delay: 0.9s">Bridging Enterprise IT & AI: 3 Years Automating Global Ops (Intune/ServiceNow) + Applied AI/ML (IIT Guwahati)</p>
-                    <div class="hero-buttons anim-reveal" style="--delay: 1.2s">
-                        <a href="#projects" class="btn btn-primary btn-glow" data-hover>View My Work</a>
-                        <a href="resume/IIT_Guwahati_Resume.pdf" class="btn btn-secondary" download
-                            data-hover>Download Resume</a>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="stat-number" data-target="60" data-suffix="%">—</div>
+                        <div class="stat-label">BGV Time Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-number" data-target="3" data-suffix=" Yrs">—</div>
+                        <div class="stat-label">Enterprise Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="stat-number" data-target="3" data-suffix="">—</div>
+                        <div class="stat-label">Microsoft Certifications</div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ===== ABOUT ===== -->
         <section id="about" class="section">
             <div class="container">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
-                    <p>Final-year B.Sc. (Hons.) Data Science & AI student at IIT Guwahati with 3 years of enterprise engineering experience at HCL Technologies serving global clients. Specialized in line-managing 10,000+ enterprise devices and user environments using Microsoft Intune and ServiceNow to build end-to-end workflow automation. Combining AI/ML expertise (PyTorch, Deep Learning, Azure AI-102) with hands-on automation to drive digital transformation and smart engineering solutions.</p>
+                    <p>Final-year B.Sc. (Hons.) Data Science &amp; AI student at IIT Guwahati with 3 years of enterprise
+                        engineering experience at HCL Technologies serving global clients. Specialized in line-managing
+                        10,000+ enterprise devices and user environments using Microsoft Intune and ServiceNow to build
+                        end-to-end workflow automation. Combining AI/ML expertise (PyTorch, Deep Learning, Azure AI-102)
+                        with hands-on automation to drive digital transformation and smart engineering solutions.</p>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="section">
+        <!-- ===== SKILLS ===== -->
+        <section id="skills" class="section section-alt">
             <div class="container">
-                <h2 class="section-title">Skills</h2>
+                <h2 class="section-title">Technical Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Automation & Systems</h3>
+                        <h3><i class="fas fa-cogs"></i> Automation &amp; Enterprise IT</h3>
                         <div class="badges">
-                            <span class="badge">ServiceNow Development</span>
+                            <span class="badge">ServiceNow</span>
                             <span class="badge">Microsoft Intune</span>
-                            <span class="badge">Device & User Line Management</span>
-                            <span class="badge">Workflow Automation</span>
-                            <span class="badge">MECM (SCCM)</span>
+                            <span class="badge">MECM / SCCM</span>
+                            <span class="badge">PowerShell Automation</span>
+                            <span class="badge">Device &amp; User Management</span>
                             <span class="badge">Windows Autopilot</span>
                             <span class="badge">Active Directory</span>
+                            <span class="badge">ITIL</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Programming & Analytics</h3>
+                        <h3><i class="fas fa-brain"></i> AI / ML &amp; Data</h3>
                         <div class="badges">
-                            <span class="badge">Python (NumPy, Pandas, PyTorch, TensorFlow)</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">PyTorch</span>
+                            <span class="badge">TensorFlow / Keras</span>
+                            <span class="badge">Deep Learning (CNN, ResNet)</span>
+                            <span class="badge">NLP (Transformers)</span>
+                            <span class="badge">Computer Vision</span>
+                            <span class="badge">Data Analytics</span>
+                            <span class="badge">Model Evaluation</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming &amp; Analytics</h3>
+                        <div class="badges">
+                            <span class="badge">Python</span>
                             <span class="badge">SQL</span>
+                            <span class="badge">PowerShell</span>
                             <span class="badge">C</span>
                             <span class="badge">R</span>
-                            <span class="badge">PowerShell & Shell Scripting</span>
+                            <span class="badge">FastAPI</span>
+                            <span class="badge">React.js</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Machine Learning & AI</h3>
-                        <div class="badges">
-                            <span class="badge">Deep Learning (CNN, ResNet, DenseNet-121)</span>
-                            <span class="badge">NLP (Bio_ClinicalBERT, Transformers)</span>
-                            <span class="badge">Computer Vision (OpenCV, TorchXrayVision)</span>
-                            <span class="badge">Statistical Modeling</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Cloud & DevOps</h3>
+                        <h3><i class="fas fa-cloud"></i> Cloud &amp; Platforms</h3>
                         <div class="badges">
                             <span class="badge">Microsoft Azure</span>
                             <span class="badge">Azure AI Services</span>
+                            <span class="badge">Power Automate</span>
+                            <span class="badge">Microsoft 365</span>
                             <span class="badge">VMware</span>
-                            <span class="badge">Git</span>
-                            <span class="badge">VS Code</span>
-                            <span class="badge">LaTeX & PGFPlots</span>
+                            <span class="badge">Git / GitHub</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- RESEARCH EXPERIENCE -->
-        <section id="research" class="section">
+        <!-- ===== TERMINAL DEMO ===== -->
+        <section id="automation" class="section">
+            <div class="container">
+                <h2 class="section-title">Automation in Action</h2>
+                <div class="terminal-layout">
+                    <div class="terminal-info">
+                        <h3>Enterprise Automation at Scale</h3>
+                        <p>At HCL Technologies, I automated the full device and user lifecycle for a global client using
+                            PowerShell, Microsoft Intune, and ServiceNow — eliminating manual toil and ensuring
+                            consistent compliance across 10,000+ endpoints worldwide.</p>
+                        <div class="automation-features">
+                            <div class="auto-feature">
+                                <i class="fas fa-check-circle"></i>
+                                Non-compliant device detection &amp; remediation via Intune + PowerShell
+                            </div>
+                            <div class="auto-feature">
+                                <i class="fas fa-check-circle"></i>
+                                ServiceNow workflows for zero-touch ticket triage &amp; auto-assignment
+                            </div>
+                            <div class="auto-feature">
+                                <i class="fas fa-check-circle"></i>
+                                GPT-4o mini + ServiceNow agentic AI — 60% faster BGV processing
+                            </div>
+                            <div class="auto-feature">
+                                <i class="fas fa-check-circle"></i>
+                                Bulk software deployment &amp; patch automation across global user base
+                            </div>
+                        </div>
+                    </div>
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="terminal-dot dot-red"></span>
+                            <span class="terminal-dot dot-yellow"></span>
+                            <span class="terminal-dot dot-green"></span>
+                            <span class="terminal-title">PowerShell — Intune Automation</span>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <div id="terminalLines"></div>
+                            <span class="t-cursor" id="termCursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PIPELINE ===== -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Automation Workflow</h2>
+                <div class="pipeline">
+                    <div class="pipeline-step">
+                        <span class="step-num">1</span>
+                        <i class="fas fa-ticket-alt"></i>
+                        <h4>ServiceNow</h4>
+                        <p>Ticket / Request raised</p>
+                    </div>
+                    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                    <div class="pipeline-step">
+                        <span class="step-num">2</span>
+                        <i class="fas fa-code"></i>
+                        <h4>PowerShell</h4>
+                        <p>Script triggered automatically</p>
+                    </div>
+                    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                    <div class="pipeline-step">
+                        <span class="step-num">3</span>
+                        <i class="fab fa-microsoft"></i>
+                        <h4>Intune / MECM</h4>
+                        <p>Policy / App deployed to device</p>
+                    </div>
+                    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                    <div class="pipeline-step">
+                        <span class="step-num">4</span>
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Compliance Check</h4>
+                        <p>Device verified &amp; remediated</p>
+                    </div>
+                    <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                    <div class="pipeline-step">
+                        <span class="step-num">5</span>
+                        <i class="fas fa-bell"></i>
+                        <h4>Auto-Resolved</h4>
+                        <p>Ticket closed, user notified</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-robot"></i></div>
+                        <h3>BGV Agentic AI System</h3>
+                        <span class="impact-badge"><i class="fas fa-arrow-down"></i> 60% Faster BGV</span>
+                        <p>Client project at HCL Technologies. Automated the Background Verification (BGV) process for
+                            new-employee onboarding — integrating ServiceNow case management with GPT-4o mini for
+                            automated risk scoring and email drafting.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">ServiceNow</span>
+                            <span class="tech-tag">OpenAI GPT-4o mini</span>
+                            <span class="tech-tag">Microsoft 365</span>
+                            <span class="tech-tag">Power Automate</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-leaf"></i></div>
+                        <h3>Plant Disease Classification</h3>
+                        <span class="impact-badge"><i class="fas fa-check"></i> End-to-End Deployed</span>
+                        <p>Image classification system for real-time plant disease detection using TensorFlow/Keras CNN.
+                            FastAPI backend for model inference and React.js frontend with real-time predictions.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">CNN</span>
+                        </div>
+                        <a href="https://github.com/Ashutosh-yadav0001/Pototo-disease" target="_blank" class="btn btn-secondary">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RESEARCH ===== -->
+        <section id="research" class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Research Experience</h2>
                 <div class="timeline">
@@ -135,12 +292,12 @@
                         <div class="timeline-content">
                             <h3>PneumoFusionNet — Multimodal Deep Learning for Pneumonia Detection</h3>
                             <h4>IIT Guwahati &nbsp;|&nbsp; Supervisor: Prof. Ritika Jain</h4>
-                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 10px;">
+                            <ul>
                                 <li>Built a multimodal deep learning pipeline fusing chest X-ray images (<strong>ResNet50 + DSC/GCSA</strong>, 1024-d) with clinical text (<strong>Bio_ClinicalBERT</strong>, 768-d) on the MIMIC-CXR dataset.</li>
-                                <li>Designed a leak-proof evaluation pipeline (patient-level GroupShuffleSplit, IMPRESSION-section stripping), achieving an honest <strong>AUC of 0.835</strong> with multimodal fusion giving a <strong>+3.7% leakage-free AUC gain</strong> over single-modality baselines.</li>
+                                <li>Designed a leak-proof evaluation pipeline achieving an honest <strong>AUC of 0.835</strong>, with multimodal fusion giving a <strong>+3.7% leakage-free AUC gain</strong> over single-modality baselines.</li>
                                 <li>Secured credentialed MIMIC-CXR access via CITI research ethics training and PhysioNet DUA.</li>
                             </ul>
-                            <div class="tech-stack" style="margin-top:12px;">
+                            <div class="tech-stack" style="margin-top:14px;">
                                 <span class="tech-tag">PyTorch</span>
                                 <span class="tech-tag">ResNet50 + GCSA</span>
                                 <span class="tech-tag">Bio_ClinicalBERT</span>
@@ -153,43 +310,7 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <!-- BGV Agentic AI -->
-                    <div class="project-card">
-                        <div class="project-icon"><i class="fas fa-robot"></i></div>
-                        <h3>BGV Agentic AI System</h3>
-                        <p>Client project at HCL Technologies. Automated the Background Verification (BGV) process for new-employee onboarding by integrating ServiceNow case management with GPT-4o mini for automated risk scoring and email drafting — cutting BGV processing time by 60%.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">ServiceNow</span>
-                            <span class="tech-tag">OpenAI GPT-4o mini</span>
-                            <span class="tech-tag">Microsoft 365</span>
-                            <span class="tech-tag">Power Automate</span>
-                        </div>
-                    </div>
-
-                    <!-- Plant Disease -->
-                    <div class="project-card">
-                        <div class="project-icon"><i class="fas fa-leaf"></i></div>
-                        <h3>Plant Disease Classification</h3>
-                        <p>End-to-end image classification system for real-time plant disease detection using TensorFlow/Keras CNN. FastAPI backend for model inference and React.js frontend with real-time predictions.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">CNN</span>
-                        </div>
-                        <a href="https://github.com/Ashutosh-yadav0001/Pototo-disease" target="_blank"
-                            class="btn btn-secondary" data-hover>View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- ===== EXPERIENCE ===== -->
         <section id="experience" class="section">
             <div class="container">
                 <h2 class="section-title">Experience</h2>
@@ -200,41 +321,25 @@
                             <div class="company-header">
                                 <img src="hcl_logo.jpg" alt="HCL Technologies" class="company-logo">
                                 <div>
-                                    <h3>Automation Engineer – MECM / Intune & ServiceNow</h3>
+                                    <h3>Automation Engineer – MECM / Intune &amp; ServiceNow</h3>
                                     <h4>HCL Technologies Ltd – Lucknow, India</h4>
                                 </div>
                             </div>
-                            <p><strong>Key Roles and Responsibilities:</strong></p>
-                            <ul
-                                style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 10px;">
-                                <li>Delivered 3 years of enterprise engineering services for global clients, line-managing 10,000+ enterprise devices and user environments.</li>
-                                <li>Line managed devices & user access policies with Microsoft Intune and ServiceNow to architect automated software deployment, security baselines, and ticketing workflows.</li>
-                                <li>Leveraged Python and PowerShell scripting to build automated workflow solutions, eliminating manual steps and improving operational efficiency.</li>
-                                <li>Collaborated with international cross-functional teams and client stakeholders to document procedures and maintain strict SLA compliance.</li>
+                            <ul>
+                                <li>Delivered enterprise IT support to a global client since Oct 2023, managing end-to-end device and user lifecycle across a large, distributed environment.</li>
+                                <li>Managed devices and users using <strong>Microsoft Intune</strong> and <strong>ServiceNow</strong>, automating device-management and user-management workflows to reduce manual effort and turnaround time.</li>
+                                <li>Administered MECM/SCCM and Intune for enterprise application deployment, patching, compliance, and configuration management.</li>
+                                <li>Built <strong>PowerShell scripts and automation routines</strong> to streamline IT operations, ticket handling, and repetitive administrative tasks.</li>
+                                <li>Collaborated with cross-functional global teams to troubleshoot incidents, maintain SLAs, and continuously improve automation processes.</li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Oct 2022 – Oct 2023</div>
-                        <div class="timeline-content">
-                            <div class="company-header">
-                                <img src="hcl_logo.jpg" alt="HCL Technologies" class="company-logo">
-                                <div>
-                                    <h3>Training & Internship</h3>
-                                    <h4>HCL Training & Staffing Services Pvt. Ltd. – Lucknow, India</h4>
-                                </div>
-                            </div>
-                            <p>1-year training and internship program conducted by HCL Training and Staffing Services.
-                            </p>
-                            <p style="margin-top: 10px;"><strong>Learnings:</strong> VMware, Azure, RDBMS, Active
-                                Directory, ITIL, Networking.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="section">
+        <!-- ===== EDUCATION ===== -->
+        <section id="education" class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Education</h2>
                 <div class="education-list">
@@ -274,6 +379,7 @@
             </div>
         </section>
 
+        <!-- ===== CERTIFICATIONS ===== -->
         <section id="certifications" class="section">
             <div class="container">
                 <h2 class="section-title">Certifications</h2>
@@ -283,54 +389,56 @@
                         <h3>Azure AI Engineer Associate</h3>
                         <p class="cert-code">AI-102</p>
                         <span class="cert-date">Feb 2026</span>
-                        <span class="cert-level cert-associate">Associate</span>
-                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AshutoshYadav-1786/B743EFD4D5570096?sharingId=20428F42E987074D"
-                            target="_blank" class="cert-verify-link">Verify <i class="fas fa-external-link-alt"></i></a>
+                        <span class="cert-level cert-associate">Associate</span><br>
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AshutoshYadav-1786/B743EFD4D5570096?sharingId=20428F42E987074D" target="_blank" class="cert-verify-link">Verify <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"><i class="fas fa-cloud"></i></div>
+                        <h3>Azure AI Fundamentals</h3>
+                        <p class="cert-code">AI-900</p>
+                        <span class="cert-date">2025</span>
+                        <span class="cert-level cert-fundamental">Fundamentals</span>
                     </div>
                     <div class="cert-card">
                         <div class="cert-icon"><i class="fas fa-laptop"></i></div>
                         <h3>Endpoint Administrator Associate</h3>
-                        <p class="cert-code">Microsoft 365</p>
+                        <p class="cert-code">MD-102</p>
                         <span class="cert-date">Jun 2024</span>
-                        <span class="cert-level cert-associate">Associate</span>
-                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AshutoshYadav-1786/B68119B3500414AA?sharingId=20428F42E987074D"
-                            target="_blank" class="cert-verify-link">Verify <i class="fas fa-external-link-alt"></i></a>
+                        <span class="cert-level cert-associate">Associate</span><br>
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AshutoshYadav-1786/B68119B3500414AA?sharingId=20428F42E987074D" target="_blank" class="cert-verify-link">Verify <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <!-- ===== CONTACT ===== -->
+        <section id="contact" class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Contact Me</h2>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitBtn" data-hover>Send Message</button>
-                    <div class="form-success" id="formSuccess">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
+                    <div class="form-success" id="formSuccess" style="display:none;">
                         <i class="fas fa-check-circle"></i>
                         <span>Message sent! I'll get back to you soon.</span>
                     </div>
                 </form>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/ashutosh0001/" target="_blank" aria-label="LinkedIn"
-                        data-hover><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Ashutosh-yadav0001" target="_blank" aria-label="GitHub" data-hover><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/ashutosh0001" target="_blank" aria-label="Instagram"
-                        data-hover><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:ay346285@gmail.com" aria-label="Email" data-hover><i
-                            class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/ashutosh0001/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ashutosh-yadav0001" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/ashutosh0001" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:ay346285@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </section>
@@ -338,11 +446,10 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="year"></span> Ashutosh Yadav. Built with ❤️ and curiosity.</p>
+            <p>&copy; <span id="year"></span> Ashutosh Yadav &mdash; Built with code, curiosity &amp; automation.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
