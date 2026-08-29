@@ -1,333 +1,311 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Sound Manager (Web Audio API) ---
-    class SoundManager {
-        constructor() {
-            this.context = new (window.AudioContext || window.webkitAudioContext)();
-            this.isMuted = false;
-            this.toggleBtn = document.getElementById('sound-toggle');
-            this.initListeners();
-        }
 
-        initListeners() {
-            this.toggleBtn.addEventListener('click', () => {
-                this.isMuted = !this.isMuted;
-                const icon = this.toggleBtn.querySelector('i');
-                if (this.isMuted) {
-                    icon.classList.remove('fa-volume-up');
-                    icon.classList.add('fa-volume-mute');
-                } else {
-                    icon.classList.remove('fa-volume-mute');
-                    icon.classList.add('fa-volume-up');
-                }
-                if (this.context.state === 'suspended') {
-                    this.context.resume();
-                }
-            });
-
-            document.querySelectorAll('[data-hover]').forEach(el => {
-                el.addEventListener('mouseenter', () => this.playHoverSound());
-                el.addEventListener('click', () => this.playClickSound());
-            });
-        }
-
-        playHoverSound() {
-            if (this.isMuted) return;
-            if (this.context.state === 'suspended') this.context.resume();
-
-            const osc = this.context.createOscillator();
-            const gain = this.context.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(400, this.context.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(600, this.context.currentTime + 0.1);
-
-            gain.gain.setValueAtTime(0.05, this.context.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 0.1);
-
-            osc.connect(gain);
-            gain.connect(this.context.destination);
-
-            osc.start();
-            osc.stop(this.context.currentTime + 0.1);
-        }
-
-        playClickSound() {
-            if (this.isMuted) return;
-            if (this.context.state === 'suspended') this.context.resume();
-
-            const osc = this.context.createOscillator();
-            const gain = this.context.createGain();
-
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(300, this.context.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, this.context.currentTime + 0.15);
-
-            gain.gain.setValueAtTime(0.1, this.context.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 0.15);
-
-            osc.connect(gain);
-            gain.connect(this.context.destination);
-
-            osc.start();
-            osc.stop(this.context.currentTime + 0.15);
-        }
-    }
-
-    // --- Premium Cursor-Reactive Background ---
-    class CursorBackground {
-        constructor() {
-            this.canvas = document.getElementById('particles-canvas');
-            this.ctx = this.canvas.getContext('2d');
-            this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-            this.smoothMouse = { x: this.mouse.x, y: this.mouse.y };
-            this.dots = [];
-            this.resize();
-            this.initDots();
-            this.animate();
-
-            window.addEventListener('resize', () => {
-                this.resize();
-                this.initDots();
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                this.mouse.x = e.clientX;
-                this.mouse.y = e.clientY;
-            });
-        }
-
-        resize() {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
-        }
-
-        initDots() {
-            this.dots = [];
-            const count = Math.floor((this.canvas.width * this.canvas.height) / 25000);
-            for (let i = 0; i < count; i++) {
-                this.dots.push({
-                    x: Math.random() * this.canvas.width,
-                    y: Math.random() * this.canvas.height,
-                    baseSize: Math.random() * 1.5 + 0.5,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    speedY: (Math.random() - 0.5) * 0.3,
-                    opacity: Math.random() * 0.3 + 0.1
-                });
-            }
-        }
-
-        animate() {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-            // Smooth mouse follow
-            this.smoothMouse.x += (this.mouse.x - this.smoothMouse.x) * 0.08;
-            this.smoothMouse.y += (this.mouse.y - this.smoothMouse.y) * 0.08;
-
-            // Draw cursor glow
-            const gradient = this.ctx.createRadialGradient(
-                this.smoothMouse.x, this.smoothMouse.y, 0,
-                this.smoothMouse.x, this.smoothMouse.y, 350
-            );
-            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.04)');
-            gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.015)');
-            gradient.addColorStop(1, 'transparent');
-            this.ctx.fillStyle = gradient;
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-            // Update and draw dots
-            this.dots.forEach(dot => {
-                dot.x += dot.speedX;
-                dot.y += dot.speedY;
-
-                if (dot.x > this.canvas.width) dot.x = 0;
-                if (dot.x < 0) dot.x = this.canvas.width;
-                if (dot.y > this.canvas.height) dot.y = 0;
-                if (dot.y < 0) dot.y = this.canvas.height;
-
-                // React to cursor proximity
-                const dx = this.smoothMouse.x - dot.x;
-                const dy = this.smoothMouse.y - dot.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const maxDist = 200;
-
-                let size = dot.baseSize;
-                let alpha = dot.opacity;
-
-                if (dist < maxDist) {
-                    const factor = 1 - dist / maxDist;
-                    size += factor * 2;
-                    alpha += factor * 0.4;
-                }
-
-                this.ctx.beginPath();
-                this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-                this.ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
-                this.ctx.fill();
-            });
-
-            requestAnimationFrame(this.animate.bind(this));
-        }
-    }
-
-    // --- Custom Cursor ---
-    const cursor = document.querySelector('.cursor');
-    const character = document.querySelector('.character-cursor');
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-
-        setTimeout(() => {
-            if (character) {
-                character.style.left = e.clientX + 'px';
-                character.style.top = e.clientY + 'px';
-            }
-        }, 80);
-    });
-
-    document.querySelectorAll('[data-hover]').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-            if (character) character.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            if (character) character.classList.remove('active');
-        });
-    });
-
-    // --- Glitch Effect Trigger ---
-    // Glitch effect removed for minimal design
-
-
-    // --- Hamburger Menu Toggle ---
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = hamburger.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close menu when clicking a nav link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-    }
-
-    // --- Initialize ---
-    new SoundManager();
-    new CursorBackground();
-
-    // --- Typing Effect ---
-    class TypeWriter {
-        constructor(element, phrases, typingSpeed = 80, deletingSpeed = 40, pauseTime = 2000) {
-            this.element = element;
-            this.phrases = phrases;
-            this.typingSpeed = typingSpeed;
-            this.deletingSpeed = deletingSpeed;
-            this.pauseTime = pauseTime;
-            this.phraseIndex = 0;
-            this.charIndex = 0;
-            this.isDeleting = false;
-            this.type();
-        }
-
-        type() {
-            const currentPhrase = this.phrases[this.phraseIndex];
-
-            if (this.isDeleting) {
-                this.charIndex--;
-                this.element.textContent = currentPhrase.substring(0, this.charIndex);
-            } else {
-                this.charIndex++;
-                this.element.textContent = currentPhrase.substring(0, this.charIndex);
-            }
-
-            let speed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
-
-            if (!this.isDeleting && this.charIndex === currentPhrase.length) {
-                speed = this.pauseTime;
-                this.isDeleting = true;
-            } else if (this.isDeleting && this.charIndex === 0) {
-                this.isDeleting = false;
-                this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-                speed = 400;
-            }
-
-            setTimeout(() => this.type(), speed);
-        }
-    }
-
-    const typedElement = document.getElementById('typed-text');
-    if (typedElement) {
-        new TypeWriter(typedElement, [
-            '3 Years Enterprise Experience with Global Clients',
-            'ServiceNow & Intune Device & User Automation Specialist',
-            'B.Sc. (Hons.) Data Science & AI Student @ IIT Guwahati',
-            'Specializing in Deep Learning & Smart Engineering Solutions',
-        ], 70, 35, 2000);
-    }
-
-    // --- Year, Smooth Scroll, Form ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-    // Contact form with animated success message
-    const contactForm = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Show success message
-            if (formSuccess) {
-                formSuccess.classList.add('show');
-
-                // Hide after 4 seconds
-                setTimeout(() => {
-                    formSuccess.classList.remove('show');
-                }, 4000);
-            }
-
-            contactForm.reset();
-        });
-    }
-
-    // Scroll Animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+    // =============================================
+    // 1. REVEAL ANIMATIONS (.anim-reveal)
+    // =============================================
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const delay = parseFloat(e.target.style.getPropertyValue('--delay') || '0') * 1000;
+                setTimeout(() => e.target.classList.add('visible'), delay);
+                revealObserver.unobserve(e.target);
             }
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.add('fade-in');
-        observer.observe(section);
+    document.querySelectorAll('.anim-reveal').forEach(el => revealObserver.observe(el));
+
+    // Also handle old .fade-in class
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                fadeObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // =============================================
+    // 2. TYPEWRITER
+    // =============================================
+    class TypeWriter {
+        constructor(el, phrases, typeSpeed = 70, deleteSpeed = 35, pauseTime = 2000) {
+            this.el = el;
+            this.phrases = phrases;
+            this.typeSpeed = typeSpeed;
+            this.deleteSpeed = deleteSpeed;
+            this.pauseTime = pauseTime;
+            this.phraseIndex = 0;
+            this.charIndex = 0;
+            this.isDeleting = false;
+            this.tick();
+        }
+        tick() {
+            const current = this.phrases[this.phraseIndex];
+            if (this.isDeleting) {
+                this.el.textContent = current.slice(0, --this.charIndex);
+            } else {
+                this.el.textContent = current.slice(0, ++this.charIndex);
+            }
+            let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+            if (!this.isDeleting && this.charIndex === current.length) {
+                delay = this.pauseTime;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.charIndex === 0) {
+                this.isDeleting = false;
+                this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+                delay = 400;
+            }
+            setTimeout(() => this.tick(), delay);
+        }
+    }
+
+    const typedEl = document.getElementById('typed-text');
+    if (typedEl) {
+        new TypeWriter(typedEl, [
+            '3 Years Enterprise Automation Experience',
+            'ServiceNow & Intune Specialist',
+            'B.Sc. DS & AI — IIT Guwahati',
+            'Deep Learning & AI/ML Developer',
+            'PowerShell & Workflow Automation',
+        ], 70, 35, 2000);
+    }
+
+    // =============================================
+    // 3. ANIMATED STATS COUNTER
+    // =============================================
+    function animateCounter(el) {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const startTime = performance.now();
+        function update(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(eased * target);
+            el.textContent = (target >= 1000 ? value.toLocaleString() : value) + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
+                statsObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // =============================================
+    // 4. TERMINAL TYPING ANIMATION
+    // =============================================
+    const terminalLines = document.getElementById('terminalLines');
+
+    const script = [
+        { type: 'prompt', text: 'PS C:\\Automation> ' },
+        { type: 'cmd', text: 'Get-IntuneManagedDevice | Where-Object {$_.complianceState -eq "noncompliant"}', pause: 65 },
+        { type: 'newline' },
+        { type: 'output', text: 'Connecting to Microsoft Graph API...', delay: 300 },
+        { type: 'success', text: '[✓] Authenticated — Tenant: global-client.onmicrosoft.com', delay: 200 },
+        { type: 'warn',    text: '[!] Found 47 non-compliant devices', delay: 150 },
+        { type: 'newline' },
+        { type: 'prompt', text: 'PS C:\\Automation> ' },
+        { type: 'cmd', text: 'Invoke-IntuneDeviceAction -Action Sync -DeviceIds $devices', pause: 65 },
+        { type: 'newline' },
+        { type: 'success', text: '[✓] Sync triggered on 47 devices', delay: 200 },
+        { type: 'success', text: '[✓] Compliance policies re-applied', delay: 150 },
+        { type: 'output', text: '    Processing...  3.2s', delay: 500 },
+        { type: 'success', text: '[✓] 47/47 devices synced & compliant', delay: 200 },
+        { type: 'newline' },
+        { type: 'prompt', text: 'PS C:\\Automation> ' },
+        { type: 'cmd', text: 'Close-ServiceNowTicket -Id "INC0098234" -Resolution "Auto-remediated"', pause: 65 },
+        { type: 'newline' },
+        { type: 'success', text: '[✓] INC0098234 resolved — SLA met (3.2h / 4h target)', delay: 200 },
+        { type: 'blue',    text: '    Manual effort saved: 0 min  (fully automated ✓)', delay: 150 },
+        { type: 'newline' },
+        { type: 'prompt', text: 'PS C:\\Automation> ' },
+    ];
+
+    function renderLine(item) {
+        return new Promise(resolve => {
+            if (!terminalLines) return resolve();
+            if (item.type === 'newline') {
+                terminalLines.innerHTML += '<br>';
+                return resolve();
+            }
+            const colorMap = { prompt:'t-prompt', cmd:'t-cmd', output:'t-output', success:'t-success', warn:'t-warn', blue:'t-blue' };
+            const cls = colorMap[item.type] || 't-output';
+
+            if (item.type === 'cmd') {
+                const span = document.createElement('span');
+                span.className = cls;
+                terminalLines.appendChild(span);
+                let i = 0;
+                function typeChar() {
+                    if (i < item.text.length) {
+                        span.textContent += item.text[i++];
+                        const body = document.getElementById('terminalBody');
+                        if (body) body.scrollTop = body.scrollHeight;
+                        setTimeout(typeChar, item.pause || 65);
+                    } else {
+                        terminalLines.innerHTML += '<br>';
+                        resolve();
+                    }
+                }
+                typeChar();
+            } else {
+                setTimeout(() => {
+                    terminalLines.innerHTML += `<span class="${cls}">${item.text}</span><br>`;
+                    const body = document.getElementById('terminalBody');
+                    if (body) body.scrollTop = body.scrollHeight;
+                    resolve();
+                }, item.delay || 100);
+            }
+        });
+    }
+
+    async function runTerminal() {
+        if (!terminalLines) return;
+        terminalLines.innerHTML = '';
+        for (const item of script) await renderLine(item);
+        setTimeout(runTerminal, 3500);
+    }
+
+    const termSection = document.querySelector('#automation');
+    if (termSection) {
+        const termObs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) { runTerminal(); termObs.disconnect(); }
+        }, { threshold: 0.3 });
+        termObs.observe(termSection);
+    }
+
+    // =============================================
+    // 5. HAMBURGER MENU
+    // =============================================
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            navLinks.classList.toggle('active'); // support both class names
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('open', 'active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+    }
+
+    // =============================================
+    // 6. ACTIVE NAV ON SCROLL
+    // =============================================
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                navAnchors.forEach(a => a.classList.remove('nav-active'));
+                const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+                if (active) active.classList.add('nav-active');
+            }
+        });
+    }, { threshold: 0.4 });
+    sections.forEach(s => navObserver.observe(s));
+
+    // =============================================
+    // 7. HEADER SHRINK
+    // =============================================
+    const header = document.getElementById('header');
+    if (header) {
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60));
+    }
+
+    // =============================================
+    // 8. CONTACT FORM — Formspree
+    // =============================================
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            const data = new FormData(form);
+            try {
+                const res = await fetch('https://formspree.io/f/xdkojpqv', {
+                    method: 'POST', body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    form.reset();
+                    if (formSuccess) { formSuccess.style.display = 'flex'; setTimeout(() => formSuccess.style.display = 'none', 4000); }
+                } else {
+                    alert('Failed to send. Please email ay346285@gmail.com directly.');
+                }
+            } catch {
+                alert('Failed to send. Please email ay346285@gmail.com directly.');
+            }
+            btn.textContent = 'Send Message';
+            btn.disabled = false;
+        });
+    }
+
+    // =============================================
+    // 9. SMOOTH SCROLL
+    // =============================================
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
     });
+
+    // =============================================
+    // 10. YEAR + SOUND TOGGLE
+    // =============================================
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const soundBtn = document.getElementById('sound-toggle');
+    if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+            const icon = soundBtn.querySelector('i');
+            icon.classList.toggle('fa-volume-mute');
+            icon.classList.toggle('fa-volume-up');
+        });
+    }
+
+    // =============================================
+    // 11. BACK TO TOP BUTTON
+    // =============================================
+    const backTop = document.createElement('button');
+    backTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    backTop.id = 'backToTop';
+    backTop.setAttribute('aria-label', 'Back to top');
+    backTop.style.cssText = `
+        position:fixed; bottom:28px; right:28px; z-index:999;
+        background:var(--accent-primary); color:#fff; border:none;
+        width:40px; height:40px; border-radius:50%; cursor:pointer;
+        font-size:0.9rem; display:none; align-items:center; justify-content:center;
+        transition:opacity 0.3s; box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    `;
+    document.body.appendChild(backTop);
+    window.addEventListener('scroll', () => {
+        backTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
 });
