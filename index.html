@@ -117,16 +117,18 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3><i class="fas fa-brain"></i> AI / ML &amp; Data</h3>
+                        <h3><i class="fas fa-brain"></i> AI / ML &amp; Agentic Systems</h3>
                         <div class="badges">
+                            <span class="badge">LangGraph</span>
+                            <span class="badge">Agentic RAG</span>
                             <span class="badge">Python</span>
                             <span class="badge">PyTorch</span>
-                            <span class="badge">TensorFlow / Keras</span>
+                            <span class="badge">PostgreSQL / pgvector</span>
+                            <span class="badge">Groq LPU</span>
+                            <span class="badge">Pydantic Logfire</span>
                             <span class="badge">Deep Learning (CNN, ResNet)</span>
                             <span class="badge">NLP (Transformers)</span>
                             <span class="badge">Computer Vision</span>
-                            <span class="badge">Data Analytics</span>
-                            <span class="badge">Model Evaluation</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -177,7 +179,7 @@
                             </div>
                             <div class="auto-feature">
                                 <i class="fas fa-check-circle"></i>
-                                GPT-4o mini + ServiceNow agentic AI — 60% faster BGV processing
+                                CloudPulse SRE Agent — ~1.2s automated runbook triage with LangGraph &amp; pgvector
                             </div>
                             <div class="auto-feature">
                                 <i class="fas fa-check-circle"></i>
@@ -243,6 +245,174 @@
                 </div>
             </div>
         </section>
+        </section>
+
+        <!-- ===== AUTOPILOT ZERO-TOUCH ONBOARDING ===== -->
+        <section id="autopilot" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Zero-Touch Onboarding</h2>
+                <p class="ap-subtitle">Windows Autopilot — From manufacture to full productivity, <strong>zero IT touch</strong></p>
+
+                <!-- Main flow steps -->
+                <div class="ap-flow" id="apFlow">
+
+                    <div class="ap-step" data-step="0">
+                        <div class="ap-step-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">01</span>
+                            <h4>OEM Ships Device</h4>
+                            <p>Laptop pre-registered in Azure AD by manufacturer via Autopilot hardware hash</p>
+                            <span class="ap-tag"><i class="fab fa-microsoft"></i> AAD Pre-Registration</span>
+                        </div>
+                    </div>
+
+                    <div class="ap-step" data-step="1">
+                        <div class="ap-step-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">02</span>
+                            <h4>Employee Receives Laptop</h4>
+                            <p>Shipped directly to employee's home or office — no IT pre-imaging required</p>
+                            <span class="ap-tag"><i class="fas fa-shipping-fast"></i> Zero IT Touch</span>
+                        </div>
+                    </div>
+
+                    <div class="ap-step" data-step="2">
+                        <div class="ap-step-icon">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">03</span>
+                            <h4>Device Powers On</h4>
+                            <p>Employee connects to internet — OOBE begins, Autopilot profile loads from cloud</p>
+                            <span class="ap-tag"><i class="fas fa-wifi"></i> OOBE → Cloud Profile</span>
+                        </div>
+                    </div>
+
+                    <div class="ap-step" data-step="3">
+                        <div class="ap-step-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">04</span>
+                            <h4>Corporate Sign-In</h4>
+                            <p>Employee enters M365 credentials — Azure AD Join completes automatically</p>
+                            <span class="ap-tag"><i class="fas fa-key"></i> Azure AD Join</span>
+                        </div>
+                    </div>
+
+                    <div class="ap-step" data-step="4">
+                        <div class="ap-step-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">05</span>
+                            <h4>Intune Enrollment</h4>
+                            <p>Compliance policies, security baselines, and configuration profiles pushed automatically</p>
+                            <span class="ap-tag"><i class="fab fa-microsoft"></i> MDM Enrolled</span>
+                        </div>
+                    </div>
+
+                    <div class="ap-step" data-step="5">
+                        <div class="ap-step-icon ap-step-icon--success">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="ap-step-body">
+                            <span class="ap-step-num">06</span>
+                            <h4>Ready to Work</h4>
+                            <p>Device compliant, apps deployed, user productive — avg. <strong>45 minutes</strong> total</p>
+                            <span class="ap-tag ap-tag--success"><i class="fas fa-check"></i> Fully Configured</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App deployment animation -->
+                <div class="ap-apps-section" id="apApps">
+                    <div class="ap-apps-header">
+                        <i class="fas fa-rocket"></i>
+                        <span>Apps deployed silently in background</span>
+                        <div class="ap-deploy-bar"><div class="ap-deploy-fill" id="apDeployFill"></div></div>
+                        <span class="ap-deploy-pct" id="apDeployPct">0%</span>
+                    </div>
+                    <div class="ap-apps-grid">
+                        <div class="ap-app" data-delay="0">
+                            <div class="ap-app-icon" style="background:#0078d4;">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <span>Microsoft Teams</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                        <div class="ap-app" data-delay="1">
+                            <div class="ap-app-icon" style="background:#d83b01;">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <span>Office 365</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                        <div class="ap-app" data-delay="2">
+                            <div class="ap-app-icon" style="background:#00897b;">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
+                            <span>VPN Client</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                        <div class="ap-app" data-delay="3">
+                            <div class="ap-app-icon" style="background:#107c10;">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <span>Defender ATP</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                        <div class="ap-app" data-delay="4">
+                            <div class="ap-app-icon" style="background:#1a73e8;">
+                                <i class="fab fa-chrome"></i>
+                            </div>
+                            <span>Chrome</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                        <div class="ap-app" data-delay="5">
+                            <div class="ap-app-icon" style="background:#0070f3;">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span>Company Portal</span>
+                            <span class="ap-app-status">Queued</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats row -->
+                <div class="ap-stats">
+                    <div class="ap-stat">
+                        <i class="fas fa-clock"></i>
+                        <span class="ap-stat-num">~45 min</span>
+                        <span class="ap-stat-label">Full Setup Time</span>
+                    </div>
+                    <div class="ap-stat">
+                        <i class="fas fa-hand-paper"></i>
+                        <span class="ap-stat-num">0</span>
+                        <span class="ap-stat-label">IT Touches Required</span>
+                    </div>
+                    <div class="ap-stat">
+                        <i class="fas fa-laptop"></i>
+                        <span class="ap-stat-num">10K+</span>
+                        <span class="ap-stat-label">Devices Managed</span>
+                    </div>
+                    <div class="ap-stat">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="ap-stat-num">100%</span>
+                        <span class="ap-stat-label">Policy Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== PROJECTS ===== -->
         <section id="projects" class="section">
@@ -250,18 +420,23 @@
                 <h2 class="section-title">Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <div class="project-icon"><i class="fas fa-robot"></i></div>
-                        <h3>BGV Agentic AI System</h3>
-                        <span class="impact-badge"><i class="fas fa-arrow-down"></i> 60% Faster BGV</span>
-                        <p>Client project at HCL Technologies. Automated the Background Verification (BGV) process for
-                            new-employee onboarding — integrating ServiceNow case management with GPT-4o mini for
-                            automated risk scoring and email drafting.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">ServiceNow</span>
-                            <span class="tech-tag">OpenAI GPT-4o mini</span>
-                            <span class="tech-tag">Microsoft 365</span>
-                            <span class="tech-tag">Power Automate</span>
+                        <div class="project-icon"><i class="fas fa-brain"></i></div>
+                        <h3>CloudPulse — Agentic Support &amp; SRE Platform</h3>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                            <span class="impact-badge"><i class="fas fa-bolt"></i> ~1.2s Latency</span>
+                            <span class="impact-badge" style="color: #60a5fa; border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.1);"><i class="fas fa-network-wired"></i> LangGraph RAG</span>
                         </div>
+                        <p>Autonomous enterprise multi-agent support and SRE platform powered by LangGraph StateGraph (Planner, Retriever, Reranker, Responder), Neon PostgreSQL with pgvector, and Groq LPU acceleration. Features dual user/admin portals, pre-persistence PII sanitization, Entra ID (Azure AD) SSO, and full-stack observability via Pydantic Logfire.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">LangGraph</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React 18</span>
+                            <span class="tech-tag">PostgreSQL / pgvector</span>
+                            <span class="tech-tag">Groq LPU</span>
+                            <span class="tech-tag">Pydantic Logfire</span>
+                        </div>
+                        <a href="https://github.com/Ashutosh-yadav0001/Support_chatbot" target="_blank" class="btn btn-secondary">View on GitHub</a>
                     </div>
                     <div class="project-card">
                         <div class="project-icon"><i class="fas fa-leaf"></i></div>
