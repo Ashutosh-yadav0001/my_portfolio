@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedEl = document.getElementById('typed-text');
     if (typedEl) {
         new TypeWriter(typedEl, [
-            '3 Years Enterprise Automation Experience',
-            'ServiceNow & Intune Specialist',
-            'B.Sc. DS & AI — IIT Guwahati',
-            'Deep Learning & AI/ML Developer',
-            'PowerShell & Workflow Automation',
+            'IIT Guwahati — B.Sc. DS & AI (8.5+ CGPA)',
+            'PneumoFusionNet (AUC 0.971) Multimodal AI',
+            'CloudPulse Agentic RAG & SRE Platform',
+            '3 Years Enterprise IT Experience (HCLTech)',
+            'MECM, Intune, Citrix, VMware & ServiceNow',
         ], 70, 35, 2000);
     }
 

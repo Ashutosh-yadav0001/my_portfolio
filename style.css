@@ -1025,11 +1025,6 @@ footer {
     overflow: hidden;
 }
 
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
 /* --- Staggered Card Entrance --- */
 .skill-category,
 .project-card,
