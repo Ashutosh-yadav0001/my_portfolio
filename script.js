@@ -67,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'IIT Guwahati — B.Sc. DS & AI (8.5+ CGPA)',
             'PneumoFusionNet (AUC 0.971) Multimodal AI',
             'CloudPulse Agentic RAG & SRE Platform',
-            '3 Years Enterprise IT Experience (HCLTech)',
+            '3+ Years Enterprise IT Experience (HCLTech & HCL TSS)',
+            'Six Sigma Yellow Belt Certified · SSYB',
             'MECM, Intune, Citrix, VMware & ServiceNow',
         ], 70, 35, 2000);
     }
