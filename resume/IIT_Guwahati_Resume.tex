@@ -121,9 +121,7 @@
 %%%%%%  CV STARTS HERE  %%%%%%%%%%%
 %%%%%% DEFINE ELEMENTS HERE %%%%%%%
 \newcommand{\name}{Ashutosh Yadav} % Your Name
-\newcommand{\course}{B.Sc. (Honours) - Data Science and Artificial Intelligence} % Your Course
 \newcommand{\phone}{9628356778} % Your Phone Number
-\newcommand{\emaila}{ashutosh.yadav@op.iitg.ac.in} % IITG Webmail
 \newcommand{\emailb}{ay346285@gmail.com} % Personal Email
 \newcommand{\emailc}{Ashutosh-yadav@hcltech.com} % HCLTech Email
 \newcommand{\github}{Ashutosh-yadav0001} %Github
@@ -135,11 +133,19 @@
 %----------HEADING-----------------
 \begin{tabularx}{\textwidth}{L r}
   \textbf{\LARGE \name} & +91-\phone \\
-  \textbf{MECM / Intune Engineer} $|$ HCL Technologies & \href{mailto:\emailb}{\emailb} $|$ \href{mailto:\emailc}{\emailc} \\
-  \course & \href{mailto:\emaila}{\emaila} \\
+  \textbf{Aspiring Forward Deployed AI Engineer (FDE)} & \href{mailto:\emailb}{\emailb} \\
+  \textbf{Agentic GenAI Developer} & \href{mailto:\emailc}{\emailc} \\
   Indian Institute of Technology, Guwahati & \href{https://github.com/\github}{GitHub} $|$ \href{https://www.linkedin.com/in/\linkedin/}{LinkedIn} $|$ \href{https://ashutosh-yadav0001.github.io/my\_portfolio/}{Portfolio}
 \end{tabularx}
-\vspace{-2mm}
+\vspace{-2.5mm}
+
+%-----------PROFESSIONAL SUMMARY-----------------
+\section{Professional Summary}
+\vspace{-0.5mm}
+\begin{justify}\small
+Enterprise Systems Engineer at HCLTech with 3+ years managing 10,000+ enterprise endpoints across Citrix, VMware, and distributed infrastructure, transitioning into \textbf{Forward Deployed AI Engineering (FDE)} and \textbf{Agentic GenAI Development}. Indian Institute of Technology Guwahati (8.5+ CGPA). Proven track record bridging enterprise IT operations and infrastructure reliability with stateful multi-agent systems and multimodal clinical deep learning architectures.
+\end{justify}
+\vspace{-3.5mm}
 
 %-----------EDUCATION (IITG STANDARD POSITION)-----------------
 \section{Education}
@@ -149,7 +155,7 @@
   \hline
   \textbf{Degree/Certificate} & \textbf{Institute/Board} & \textbf{CGPA/\%} & \textbf{Year}\\
   \hline
-  B.Sc. (Hons) in Data Science \& AI & Indian Institute of Technology, Guwahati & 8.5+ (Current) & 2023 -- Present\\
+  Data Science \& Artificial Intelligence & Indian Institute of Technology, Guwahati & 8.5+ (Current) & 2023 -- Present\\
   \hline
   Senior Secondary (XII) & CBSE Board & 87.2\% & 2021 \\
   \hline
@@ -163,12 +169,12 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {HCL Technologies (HCLTech) — Supporting a Global Client}{Lucknow, India}
-      {MECM / Intune Engineer}{Oct 2023 -- Present}
+      {Enterprise Systems Engineer}{Oct 2023 -- Present}
       \resumeItemListStart
         \item Delivered enterprise IT support handling \textbf{Incident, Request (RITM), and Change Management} tickets in \textbf{ServiceNow} to maintain 99\%+ SLA compliance.
         \item Supported and maintained virtual desktop infrastructure (VDI) across \textbf{Citrix Virtual Apps \& Desktops} and \textbf{VMware Horizon/vSphere}, troubleshooting sessions and virtual desktop connectivity.
         \item Administered endpoints across \textbf{MECM/SCCM}, \textbf{Microsoft Intune}, and \textbf{VMware}, maintaining compliance policies and updating configuration items (CIs) in the \textbf{CMDB}.
-        \item Managed user provisioning, application assignments, and role-based access control across \textbf{Citrix Workspace}, \textbf{Active Directory / Azure AD}, and \textbf{ITIL v4} standards.
+        \item Engineered automation scripts and administrative workflows across \textbf{Active Directory / Azure AD}, \textbf{Citrix Workspace}, and \textbf{ITIL v4} standards, bridging endpoint telemetry with automated incident triage.
       \resumeItemListEnd
 
     \resumeSubheading
@@ -192,9 +198,8 @@
       {2026 -- Present}
       {\href{https://github.com/Ashutosh-yadav0001/PneumoFusionNet}{GitHub}}
       \resumeItemListStart
-        \item Architecting a trimodal clinical diagnostic framework fusing chest radiographs (\textbf{DenseNet-121 + CBAM} attention), radiology text (\textbf{Bio\_ClinicalBERT} via 8-head cross-attention), and point-of-care WBC counts (non-linear MLP).
-        \item Enforced a strict zero-leakage protocol on MIMIC-CXR/IV (IMPRESSION stripping, keyword redaction, patient-level splits), advancing from image baseline \textbf{0.826 AUC} to state-of-the-art \textbf{0.971 AUC} (\textbf{92.3\% sensitivity}, \textbf{93.6\% specificity}).
-        \item Calibrated emergency triage threshold ($\tau = 0.50$) achieving \textbf{94.7\% sensitivity} within a point-of-care workflow executable in $<$30 mins of admission; actively drafting manuscript for peer-reviewed publication.
+        \item Developing a trimodal diagnostic framework fusing Chest X-rays (\textbf{DenseNet-121 + CBAM}), radiology text (\textbf{Bio\_ClinicalBERT}), and point-of-care WBC counts via cross-attention.
+        \item Achieved state-of-the-art diagnostic accuracy (\textbf{92.3\% sensitivity}, \textbf{93.6\% specificity}) on MIMIC-CXR, significantly outperforming the unimodal baseline with zero data leakage.
       \resumeItemListEnd
 
     \resumeProject
@@ -203,9 +208,8 @@
       {2025 -- 2026}
       {\href{https://github.com/Ashutosh-yadav0001/Support\_chatbot}{GitHub}}
       \resumeItemListStart
-        \item Architected a stateful multi-agent RAG ecosystem using \textbf{LangGraph StateGraph} (\texttt{Planner} $\rightarrow$ \texttt{Retriever} $\rightarrow$ \texttt{Reranker} $\rightarrow$ \texttt{Responder}) with dynamic intent gating, reducing retrieval overhead by \textbf{45\%}.
-        \item Implemented hybrid semantic retrieval \& neural re-ranking using \textbf{Google Gemini 768-d embeddings}, \textbf{Neon PostgreSQL (\texttt{pgvector})}, and \textbf{Jina Cross-Encoder} for zero-hallucination runbook grounding.
-        \item Accelerated LLM inference to \textbf{$\sim$1.2s} via \textbf{Groq LPU Cloud} (\texttt{gpt-oss-20b}) with multi-provider fallback; instrumented full-stack distributed tracing across 350+ spans using \textbf{Pydantic Logfire} and \textbf{LangSmith}.
+        \item Architected an autonomous multi-agent SRE system using \textbf{LangGraph StateGraph}, automating enterprise runbook retrieval, incident triage, and routing with dynamic intent gating.
+        \item Integrated \textbf{pgvector} hybrid semantic search, sub-second inference via \textbf{Groq LPU Cloud} ($\sim$1.2s), and end-to-end distributed tracing using \textbf{Pydantic Logfire} and \textbf{LangSmith}.
       \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -227,19 +231,11 @@
 \vspace{-0.2mm}
 \resumeSubHeadingListStart
 \resumePOR{Azure AI Engineer Associate (AI-102)}{Microsoft}{2026}
-\resumePOR{Six Sigma Yellow Belt Certified (SSYB)}{Lean Six Sigma}{2025}
+\resumePOR{Six Sigma Yellow Belt Certified (SSYB)}{Lean Six Sigma}{2026}
 \resumePOR{Endpoint Administrator Associate (MD-102)}{Microsoft}{2024}
 \resumePOR{Azure AI Fundamentals (AI-900)}{Microsoft}{2025}
 \resumeSubHeadingListEnd
 \vspace{-4mm}
-
-\section{Key Courses Taken}
-\resumeHeadingSkillStart
- \resumeSubItem{Data Science \& AI}
-   {Deep Learning, Machine Learning, Natural Language Processing, Computer Vision, Pattern Recognition, Artificial Intelligence}
- \resumeSubItem{Computer Science \& Math}
-   {Data Structures \& Algorithms, Database Management Systems (DBMS), Linear Algebra, Probability \& Random Processes, Calculus}
-\resumeHeadingSkillEnd
 
 \section{Positions of Responsibility}
 \vspace{-0.4mm}
