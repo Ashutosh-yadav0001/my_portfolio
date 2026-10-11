@@ -301,173 +301,6 @@
             </div>
         </section>
 
-        <!-- ===== AUTOPILOT ZERO-TOUCH ONBOARDING ===== -->
-        <section id="autopilot" class="section section-alt">
-            <div class="container">
-                <h2 class="section-title">Zero-Touch Onboarding</h2>
-                <p class="ap-subtitle">Windows Autopilot — From manufacture to full productivity, <strong>zero IT touch</strong></p>
-
-                <!-- Main flow steps -->
-                <div class="ap-flow" id="apFlow">
-
-                    <div class="ap-step" data-step="0">
-                        <div class="ap-step-icon">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">01</span>
-                            <h4>OEM Ships Device</h4>
-                            <p>Laptop pre-registered in Azure AD by manufacturer via Autopilot hardware hash</p>
-                            <span class="ap-tag"><i class="fab fa-microsoft"></i> AAD Pre-Registration</span>
-                        </div>
-                    </div>
-
-                    <div class="ap-step" data-step="1">
-                        <div class="ap-step-icon">
-                            <i class="fas fa-box-open"></i>
-                        </div>
-                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">02</span>
-                            <h4>Employee Receives Laptop</h4>
-                            <p>Shipped directly to employee's home or office — no IT pre-imaging required</p>
-                            <span class="ap-tag"><i class="fas fa-shipping-fast"></i> Zero IT Touch</span>
-                        </div>
-                    </div>
-
-                    <div class="ap-step" data-step="2">
-                        <div class="ap-step-icon">
-                            <i class="fas fa-power-off"></i>
-                        </div>
-                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">03</span>
-                            <h4>Device Powers On</h4>
-                            <p>Employee connects to internet — OOBE begins, Autopilot profile loads from cloud</p>
-                            <span class="ap-tag"><i class="fas fa-wifi"></i> OOBE → Cloud Profile</span>
-                        </div>
-                    </div>
-
-                    <div class="ap-step" data-step="3">
-                        <div class="ap-step-icon">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">04</span>
-                            <h4>Corporate Sign-In</h4>
-                            <p>Employee enters M365 credentials — Azure AD Join completes automatically</p>
-                            <span class="ap-tag"><i class="fas fa-key"></i> Azure AD Join</span>
-                        </div>
-                    </div>
-
-                    <div class="ap-step" data-step="4">
-                        <div class="ap-step-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="ap-step-connector"><div class="ap-connector-line"></div></div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">05</span>
-                            <h4>Intune Enrollment</h4>
-                            <p>Compliance policies, security baselines, and configuration profiles pushed automatically</p>
-                            <span class="ap-tag"><i class="fab fa-microsoft"></i> MDM Enrolled</span>
-                        </div>
-                    </div>
-
-                    <div class="ap-step" data-step="5">
-                        <div class="ap-step-icon ap-step-icon--success">
-                            <i class="fas fa-check-double"></i>
-                        </div>
-                        <div class="ap-step-body">
-                            <span class="ap-step-num">06</span>
-                            <h4>Ready to Work</h4>
-                            <p>Device compliant, apps deployed, user productive — avg. <strong>45 minutes</strong> total</p>
-                            <span class="ap-tag ap-tag--success"><i class="fas fa-check"></i> Fully Configured</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- App deployment animation -->
-                <div class="ap-apps-section" id="apApps">
-                    <div class="ap-apps-header">
-                        <i class="fas fa-rocket"></i>
-                        <span>Apps deployed silently in background</span>
-                        <div class="ap-deploy-bar"><div class="ap-deploy-fill" id="apDeployFill"></div></div>
-                        <span class="ap-deploy-pct" id="apDeployPct">0%</span>
-                    </div>
-                    <div class="ap-apps-grid">
-                        <div class="ap-app" data-delay="0">
-                            <div class="ap-app-icon" style="background:#0078d4;">
-                                <i class="fab fa-microsoft"></i>
-                            </div>
-                            <span>Microsoft Teams</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                        <div class="ap-app" data-delay="1">
-                            <div class="ap-app-icon" style="background:#d83b01;">
-                                <i class="fas fa-file-word"></i>
-                            </div>
-                            <span>Office 365</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                        <div class="ap-app" data-delay="2">
-                            <div class="ap-app-icon" style="background:#00897b;">
-                                <i class="fas fa-globe-asia"></i>
-                            </div>
-                            <span>VPN Client</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                        <div class="ap-app" data-delay="3">
-                            <div class="ap-app-icon" style="background:#107c10;">
-                                <i class="fas fa-shield-virus"></i>
-                            </div>
-                            <span>Defender ATP</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                        <div class="ap-app" data-delay="4">
-                            <div class="ap-app-icon" style="background:#1a73e8;">
-                                <i class="fab fa-chrome"></i>
-                            </div>
-                            <span>Chrome</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                        <div class="ap-app" data-delay="5">
-                            <div class="ap-app-icon" style="background:#0070f3;">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <span>Company Portal</span>
-                            <span class="ap-app-status">Queued</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats row -->
-                <div class="ap-stats">
-                    <div class="ap-stat">
-                        <i class="fas fa-clock"></i>
-                        <span class="ap-stat-num">~45 min</span>
-                        <span class="ap-stat-label">Full Setup Time</span>
-                    </div>
-                    <div class="ap-stat">
-                        <i class="fas fa-hand-paper"></i>
-                        <span class="ap-stat-num">0</span>
-                        <span class="ap-stat-label">IT Touches Required</span>
-                    </div>
-                    <div class="ap-stat">
-                        <i class="fas fa-laptop"></i>
-                        <span class="ap-stat-num">10K+</span>
-                        <span class="ap-stat-label">Devices Managed</span>
-                    </div>
-                    <div class="ap-stat">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="ap-stat-num">100%</span>
-                        <span class="ap-stat-label">Policy Compliant</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- ===== PROJECTS ===== -->
         <section id="projects" class="section">
             <div class="container">
@@ -679,15 +512,15 @@
                     </div>
                 </div>
 
-                <!-- HCL TSS Internship -->
+                <!-- HCL TechBee Program -->
                 <div class="exp-card">
                     <div class="exp-top">
                         <div class="exp-company">
                             <div class="exp-logo-wrap">
-                                <img src="hcl_logo.jpg" alt="HCL TSS" class="exp-logo">
+                                <img src="hcl_logo.jpg" alt="HCL TechBee" class="exp-logo">
                             </div>
                             <div>
-                                <h3 class="exp-role">Graduate Engineer Intern</h3>
+                                <h3 class="exp-role">HCL TechBee Program</h3>
                                 <p class="exp-company-name">HCL Training &amp; Staffing Services (HCL TSS) &nbsp;·&nbsp; Lucknow, India</p>
                             </div>
                         </div>
@@ -695,7 +528,7 @@
                             <span class="exp-date-chip"><i class="fas fa-calendar-alt"></i> Oct 2022 – Oct 2023</span>
                             <span class="exp-status-chip" style="background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.3); color:#a78bfa;">
                                 <span style="width:7px;height:7px;border-radius:50%;background:#a78bfa;display:inline-block;"></span>
-                                1 Year Program
+                                TechBee Scholar
                             </span>
                         </div>
                     </div>
@@ -710,7 +543,7 @@
                     <ul class="exp-bullets">
                         <li>
                             <span class="exp-bullet-icon"><i class="fas fa-check"></i></span>
-                            Completed a rigorous 1-year enterprise IT foundation and internship program conducted by <strong>HCL Training and Staffing Services (HCL TSS)</strong>.
+                            Completed a rigorous 1-year enterprise IT foundation and internship under the <strong>HCL TechBee Program</strong> conducted by HCL Training and Staffing Services (HCL TSS).
                         </li>
                         <li>
                             <span class="exp-bullet-icon"><i class="fas fa-check"></i></span>
