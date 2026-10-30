@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'IIT Guwahati — B.Sc. DS & AI (8.5+ CGPA)',
             'PneumoFusionNet (AUC 0.971) Multimodal AI',
             'CloudPulse Agentic RAG & SRE Platform',
+            'Runner-up — Microsoft Agentic AI Hackathon (2026)',
             '3+ Years Enterprise IT Experience (HCLTech & HCL TSS)',
             'Six Sigma Yellow Belt Certified · SSYB',
             'MECM, Intune, Citrix, VMware & ServiceNow',
